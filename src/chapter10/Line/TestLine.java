@@ -1,6 +1,6 @@
 package chapter10.Line;
 
-import chapter10.Point.Point;
+import chapter10.MyPoint.MyPoint;
 
 /**
  * TestLine
@@ -19,7 +19,7 @@ public class TestLine {
             System.out.println("Lines are not parallel");
         }
         
-        Point intersectPoint = line1.intersectPoint(line2);
+        MyPoint intersectPoint = line1.intersectPoint(line2);
 
         if (intersectPoint != null) {
             System.out.println( "Intersect point: ("

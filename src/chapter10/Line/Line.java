@@ -1,7 +1,7 @@
 package chapter10.Line;
 
 import chapter10.LinearEquation2X2.LinearEquation2X2;
-import chapter10.Point.Point;
+import chapter10.MyPoint.MyPoint;
 
 public class Line {
     private double a;
@@ -14,7 +14,7 @@ public class Line {
         this.c = c;
     }
 
-    public Line(Point p1, Point p2) {
+    public Line(MyPoint p1, MyPoint p2) {
         a = (p2.getY() - p1.getY());
         b = (p1.getX() - p2.getX());
         c = (a * p1.getX()) + (b * p1.getY());
@@ -39,10 +39,10 @@ public class Line {
         return parallel;
     }
 
-    public Point intersectPoint(Line line) {
-        Point point = null;
+    public MyPoint intersectPoint(Line line) {
+        MyPoint point = null;
         if (!areParallel(line)) {
-            point = new Point();
+            point = new MyPoint();
             LinearEquation2X2 le = new LinearEquation2X2(a, b, c, line.a, line.b, line.c);
             point.setX(le.solveForX());
             point.setY(le.solveForY());
