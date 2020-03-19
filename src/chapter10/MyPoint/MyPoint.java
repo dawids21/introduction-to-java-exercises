@@ -31,7 +31,7 @@ public class MyPoint {
 
     public double getDistance(MyPoint point) {
         double distance = 0;
-
+        distance = Math.sqrt((Math.pow((x - point.x), 2)) + (Math.pow((y - point.y), 2)));
         return distance;
     }
 
