@@ -1,8 +1,8 @@
-package chapter10.LinearEquation;
+package chapter10.LinearEquation2X2;
 
 import java.math.BigDecimal;
 
-public class LinearEquation {
+public class LinearEquation2X2 {
     private double a1;
     private double b1;
     private double c1;
@@ -10,7 +10,7 @@ public class LinearEquation {
     private double b2;
     private double c2;
 
-    public LinearEquation(double a1, double b1, double c1, double a2, double b2, double c2) {
+    public LinearEquation2X2(double a1, double b1, double c1, double a2, double b2, double c2) {
         this.a1 = a1;
         this.b1 = b1;
         this.c1 = c1;
@@ -25,7 +25,13 @@ public class LinearEquation {
         return (a.subtract(b).compareTo(new BigDecimal(0)) == 0 ? false : true);
     }
 
-    public static double[] solve(double a1, double b1, double c1, double a2, double b2, double c2) {
+    public boolean isSolvable() {
+        BigDecimal a = new BigDecimal(a1 * b2);
+        BigDecimal b = new BigDecimal(a2 * b1);
+        return (a.subtract(b).compareTo(new BigDecimal(0)) == 0 ? false : true);
+    }
+
+    public double[] solve() {
         double[] result = new double[2];
         if (isSolvable(a1, b1, a2, b2)) {
             result[0] = (b2 * c1 - b1 * c2) / (a1 * b2 - a2 * b1);
@@ -34,7 +40,7 @@ public class LinearEquation {
         return result;
     }
 
-    public static double solveForX(double a1, double b1, double c1, double a2, double b2, double c2) {
+    public double solveForX() {
         double result = 0;
         if (isSolvable(a1, b1, a2, b2)) {
             result = (b2 * c1 - b1 * c2) / (a1 * b2 - a2 * b1);
@@ -42,27 +48,11 @@ public class LinearEquation {
         return result;
     }
 
-    public static double solveForY(double a1, double b1, double c1, double a2, double b2, double c2) {
+    public double solveForY() {
         double result = 0;
         if (isSolvable(a1, b1, a2, b2)) {
             result = (a1 * c2 - a2 * c1) / (a1 * b2 - a2 * b1);
         }
         return result;
-    }
-
-    public boolean isSolvable() {
-        return isSolvable(a1, b1, a2, b2);
-    }
-
-    public double[] solve() {
-        return solve(a1, b1, c1, a2, b2, c2);
-    }
-
-    public double solveForX() {
-        return solveForX(a1, b1, c1, a2, b2, c2);
-    }
-
-    public double solveForY() {
-        return solveForY(a1, b1, c1, a2, b2, c2);
     }
 }
