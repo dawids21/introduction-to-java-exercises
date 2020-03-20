@@ -1,5 +1,6 @@
 package chapter10.Triangle2D;
 
+import chapter10.LineSegment.LineSegment;
 import chapter10.MyPoint.MyPoint;
 
 public class Triangle2D {
@@ -26,5 +27,53 @@ public class Triangle2D {
         area = Math.sqrt(s * (s-side1) * (s - side2) * (s - side3));
         return area;
     }
+
+	public double getPerimeter() {
+        double perimeter = 0;
+        perimeter = p1.getDistance(p2) + p1.getDistance(p3) + p2.getDistance(p3);
+		return perimeter;
+	}
+
+	public boolean contains(Triangle2D triangle2d) {
+        boolean contain = false;
+        if (contains(triangle2d.p1) && contains(triangle2d.p2) && contains(triangle2d.p3)) {
+            contain = true;
+        }
+		return contain;
+	}
+
+	public boolean contains(double d, double e) {
+		return contains(new MyPoint(d, e));
+    }
+    
+    public boolean contains(MyPoint point) {
+        boolean contain = true;
+        LineSegment[] sides = new LineSegment[3];
+        sides[0] = new LineSegment(p2, p3);
+        sides[1] = new LineSegment(p1, p3);
+        sides[2] = new LineSegment(p1, p2);
+        LineSegment[] lines = new LineSegment[3];
+        lines[0] = new LineSegment(point, p1);
+        lines[1] = new LineSegment(point, p2);
+        lines[2] = new LineSegment(point, p3);
+
+        for (int i = 0; i < sides.length; i++) {
+            if (lines[i].isIntersecting(sides[i])) {
+                contain = false;
+                break;
+            }
+        }
+
+		return contain;
+	}
+
+	public boolean overlaps(Triangle2D triangle2d) {
+		boolean overlap = false;
+        if (!contains(triangle2d.p1) || !contains(triangle2d.p2) || !contains(triangle2d.p3)
+            && !triangle2d.contains(this)) {
+            overlap = true;
+        }
+		return overlap;
+	}
     
 }

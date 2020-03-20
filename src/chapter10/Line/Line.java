@@ -1,5 +1,6 @@
 package chapter10.Line;
 
+import chapter10.LineSegment.LineSegment;
 import chapter10.LinearEquation2X2.LinearEquation2X2;
 import chapter10.MyPoint.MyPoint;
 
@@ -7,6 +8,10 @@ public class Line {
     private double a;
     private double b;
     private double c;
+
+    public final static int ON_LINE = 0;
+    public final static int ABOVE_LINE = 0;
+    public final static int BELOW_LINE = 0;
 
     public Line(double a, double b, double c) {
         this.a = a;
@@ -18,6 +23,10 @@ public class Line {
         a = (p2.getY() - p1.getY());
         b = (p1.getX() - p2.getX());
         c = (a * p1.getX()) + (b * p1.getY());
+    }
+
+    public Line(LineSegment line) {
+        this(line.getStartPoint(), line.getEndPoint());
     }
 
     public double getA() {
@@ -48,5 +57,20 @@ public class Line {
             point.setY(le.solveForY());
         }
         return point;
+    }
+
+    public int checkPointPosition(MyPoint point) {
+        int position;
+        double sum = a * point.getX() + b * point.getY();
+        if (sum > c) {
+            position = ABOVE_LINE;
+        }
+        else if (sum == c) {
+            position = ON_LINE;
+        }
+        else {
+            position = BELOW_LINE;
+        }
+        return position;
     }
 }

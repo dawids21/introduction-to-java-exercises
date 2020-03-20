@@ -29,5 +29,8 @@ public class TestLine {
         else {
             System.out.println("Lines are parallel");
         }
+        if (line1.checkPointPosition(new MyPoint(2, -1)) == Line.ON_LINE) {
+            System.out.println("Point is on line");
+        }
     }
 }
