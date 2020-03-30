@@ -2,6 +2,8 @@ package chapter11.Triangle;
 
 import java.util.Scanner;
 
+import chapter12.IllegalTriangleException.IllegalTriangleException;
+
 public class TestTriangle {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
@@ -15,7 +17,14 @@ public class TestTriangle {
         System.out.print("Triangle should be filled? (true/false): ");
         boolean filled = input.nextBoolean();
         input.close();
-        Triangle triangle = new Triangle(sides[0], sides[1], sides[2]);
+        Triangle triangle;
+        try {
+            triangle = new Triangle(sides[0], sides[1], sides[2]);
+        } catch (IllegalTriangleException ex) {
+            System.out.println(ex.getMessage());
+        } finally {
+            triangle = new Triangle();
+        }
         triangle.setColor(color);
         triangle.setFilled(filled);
         System.out.println("Area: " + triangle.getArea());
