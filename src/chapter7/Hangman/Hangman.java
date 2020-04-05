@@ -1,53 +1,55 @@
 package chapter7.Hangman;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Hangman {
-    public static String pickWord(String[] words){
-        int wordIndex = new Random().nextInt(words.length);
-        return words[wordIndex];
+    private static String pickWord(ArrayList<String> words) {
+        int wordIndex = new Random().nextInt(words.size());
+        return words.get(wordIndex);
     }
-    public static void displayWord(String word, boolean[] guessed) {
+
+    private static void displayWord(String word, boolean[] guessed) {
         for (int i = 0; i < word.length(); i++) {
             if (guessed[i]) {
                 System.out.print(word.charAt(i));
-            }
-            else {
+            } else {
                 System.out.print("*");
             }
         }
     }
-    public static boolean checkGuess(String word, boolean[] guessed, char guess) {
+
+    private static boolean checkGuess(String word, boolean[] guessed, char guess) {
         boolean correct = false;
         if (!Character.isLetter(guess)) {
             System.out.println("You have to enter a letter!");
             return true;
-        }
-        else if (Character.isUpperCase(guess)) {
+        } else if (Character.isUpperCase(guess)) {
             Character.toLowerCase(guess);
         }
         int index = word.indexOf(guess);
         if (index < 0) {
             System.out.println(guess + " is not in the word");
             correct = false;
-        }
-        else if (guessed[index]) {
+        } else if (guessed[index]) {
             System.out.println(guess + " is already in the word");
             correct = true;
-        }
-        else {
-             while (index >= 0) {
-                 guessed[index] = true;
-                 index = word.indexOf(guess, index + 1);
-                 correct = true;
-             }
+        } else {
+            while (index >= 0) {
+                guessed[index] = true;
+                index = word.indexOf(guess, index + 1);
+                correct = true;
+            }
         }
         return correct;
     }
-    public static boolean checkWordStatus(boolean[] guessed) {
+
+    private static boolean checkWordStatus(boolean[] guessed) {
         boolean status = true;
-        for (boolean letter: guessed) {
+        for (boolean letter : guessed) {
             if (!letter) {
                 status = false;
                 break;
@@ -55,55 +57,19 @@ public class Hangman {
         }
         return status;
     }
-    public static boolean playAnotherGame(Scanner input) {
+
+    private static boolean playAnotherGame(Scanner input) {
         char inputLetter = Character.toLowerCase(input.next().charAt(0));
-            while (inputLetter != 'y' && inputLetter != 'n') {
-                System.out.print("Enter y or n> ");
-                inputLetter = Character.toLowerCase(input.next().charAt(0));
-            }
+        while (inputLetter != 'y' && inputLetter != 'n') {
+            System.out.print("Enter y or n> ");
+            inputLetter = Character.toLowerCase(input.next().charAt(0));
+        }
         return (inputLetter == 'y' ? true : false);
     }
+
     public static void main(String[] args) {
-        final String[] words = {
-            "telefon",
-            "komputer",
-            "rewolwer",
-            "autostrada",
-            "programowanie",
-            "huragan",
-            "kompresja",
-            "kasztan",
-            "helikopter",
-            "kamper",
-            "butelka",
-            "kaskader",
-            "laptop",
-            "komputer",
-            "myszka",
-            "telefon",
-            "pilot",
-            "koniunkcja",
-            "operator",
-            "stolik",
-            "wyrewolwerowany",
-            "pastuch",
-            "owca",
-            "paluszki",
-            "krakersy",
-            "serwis",
-            "mieszkanie",
-            "balon",
-            "obiad",
-            "karygodny",
-            "krokodyl",
-            "autostrada",
-            "policja",
-            "konfident",
-            "bachor",
-            "kataklizm",
-            "wariatka",
-            "kontakt"
-        };
+        ArrayList<String> words = new ArrayList<>();
+        getWords(words);
         Scanner input = new Scanner(System.in);
         boolean playGame = true;
         while (playGame) {
@@ -116,16 +82,28 @@ public class Hangman {
                 displayWord(word, guessed);
                 System.out.print(" > ");
                 char guess = input.next().charAt(0);
-                if(!checkGuess(word, guessed, guess)) {
+                if (!checkGuess(word, guessed, guess)) {
                     misses++;
                 }
             }
-            System.out.println("The word is " + word + ". You missed "
-                                + misses + (misses > 1 ? " times" : " time"));
+            System.out.println("The word is " + word + ". You missed " + misses + (misses > 1 ? " times" : " time"));
             System.out.print("Do you want to guess another word? Enter y or n> ");
-            
+
             playGame = playAnotherGame(input);
         }
         input.close();
-    }    
+    }
+
+    private static void getWords(ArrayList<String> words) {
+        File file = new File("Hangman.txt");
+        try (Scanner scanner = new Scanner(file)) {
+            while (scanner.hasNext()) {
+                words.add(scanner.next());
+            }
+        } catch (FileNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            System.out.println("File with words does not exist");
+            System.exit(1);
+        }
+    }
 }
