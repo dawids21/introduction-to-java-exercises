@@ -25,6 +25,7 @@ public class ReformatJavaSourceFile {
         }
 
         reformat(inputFile, outputFile);
+        outputFile.renameTo(inputFile);
     }
 
     private static void reformat(File inputFile, File outputFile) throws FileNotFoundException {
