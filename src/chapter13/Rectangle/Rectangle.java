@@ -2,7 +2,7 @@ package chapter13.Rectangle;
 
 import chapter13.GeometricObject.GeometricObject;
 
-public class Rectangle extends GeometricObject {
+public class Rectangle extends GeometricObject implements Comparable<Rectangle> {
     private double width;
     private double height;
 
@@ -49,5 +49,26 @@ public class Rectangle extends GeometricObject {
     /** Return perimeter */
     public double getPerimeter() {
         return 2 * (width + height);
+    }
+
+    @Override
+    public int compareTo(Rectangle rectangle) {
+        if (getArea() < rectangle.getArea()) {
+            return -1;
+        } else if (getArea() == rectangle.getArea()) {
+            return 0;
+        } else {
+            return 1;
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Rectangle rectangle = (Rectangle) o;
+        if (getArea() == rectangle.getArea()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
