@@ -1,1 +1,8 @@
 bin/
+src/chapter14/*/.project
+src/chapter14/.project
+.vscode/
+src/chapter14/.settings
+src/chapter14/*/target
+src/chapter14/*/.classpath
+src/chapter14/*/.settings
