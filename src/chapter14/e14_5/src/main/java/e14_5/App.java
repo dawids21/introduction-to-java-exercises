@@ -1,4 +1,4 @@
-package tests;
+package e14_5;
 
 /**
  * Hello world!
