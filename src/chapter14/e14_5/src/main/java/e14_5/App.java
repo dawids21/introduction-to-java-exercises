@@ -14,9 +14,9 @@ import javafx.stage.Stage;
  * @version 1.0
  */
 public class App extends Application {
-    private final int width = 500;
-    private final int height = 500;
-    private final String str = "WELCOME TO JAVA ";
+    private final int WIDTH = 500;
+    private final int HEIGHT = 500;
+    private final String LINE = "WELCOME TO JAVA ";
 
     /**
      * Start javaFX application
@@ -46,21 +46,21 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         Pane mainPane = paintCircle();
-        Scene scene = new Scene(mainPane, width, height);
+        Scene scene = new Scene(mainPane, WIDTH, HEIGHT);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
     private Pane paintCircle() {
-        Font font = Font.font("Times New Roman", 40);
-        Text[] texts = new Text[str.length()];
+        Font font = Font.font("Times New Roman", WIDTH / 10);
+        Text[] texts = new Text[LINE.length()];
         Pane mainPane = new Pane();
-        for (int i = 0; i < str.length(); i++) {
-            texts[i] = new Text(Character.toString(str.charAt(i)));
+        for (int i = 0; i < LINE.length(); i++) {
+            texts[i] = new Text(Character.toString(LINE.charAt(i)));
             texts[i].setFont(font);
-            texts[i].setX(width * 0.5 + width * 0.4 * Math.cos(2.0 * Math.PI / str.length() * i));
-            texts[i].setY(height * 0.5 + height * 0.4 * Math.sin(2.0 * Math.PI / str.length() * i));
-            texts[i].setRotate(Math.toDegrees(Math.PI * 0.5 + 2 * Math.PI / str.length() * i));
+            texts[i].setX(WIDTH * 0.5 + WIDTH * 0.4 * Math.cos(2.0 * Math.PI / LINE.length() * i));
+            texts[i].setY(HEIGHT * 0.5 + HEIGHT * 0.4 * Math.sin(2.0 * Math.PI / LINE.length() * i));
+            texts[i].setRotate(Math.toDegrees(Math.PI * 0.5 + 2 * Math.PI / LINE.length() * i));
             mainPane.getChildren().add(texts[i]);
         }
         return mainPane;
