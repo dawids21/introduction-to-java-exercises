@@ -39,8 +39,9 @@ public class App extends Application {
         vbox.setAlignment(Pos.CENTER);
         vbox.setFillWidth(false);
         Label lab = new Label(THINGS[i] + " -- " + PERCENT[i] + "%");
-        lab.setAlignment(Pos.CENTER);
+        // lab.setAlignment(Pos.CENTER);
         Rectangle rec = new Rectangle(100, PERCENT[i] / 100.0 * 500, COLORS[i]);
+        lab.setLabelFor(rec);
         vbox.getChildren().addAll(lab, rec);
         return vbox;
     }
