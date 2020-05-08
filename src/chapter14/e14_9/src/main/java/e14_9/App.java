@@ -4,9 +4,11 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Arc;
+import javafx.scene.shape.ArcType;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
@@ -36,9 +38,14 @@ public class App extends Application {
         primaryStage.show();
     }
 
-    private void getArcs(StackPane pane) {
-        Arc arc = new Arc();
-        pane.getChildren().add(arc);
+    private void getArcs(StackPane stackPane) {
+        double angle = 30;
+        for (int i = 0; i < 4; i++) {
+            Arc arc = new Arc(100, 100, 80, 80, 90 * i + angle, 30);
+            Pane pane = new Pane(arc);
+            arc.setType(ArcType.ROUND);
+            stackPane.getChildren().add(pane);
+        }
     }
 
     private Circle getCircle() {
