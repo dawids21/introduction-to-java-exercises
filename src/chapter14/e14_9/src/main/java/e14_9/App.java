@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
@@ -25,16 +26,19 @@ public class App extends Application {
             for (int j = 0; j < 2; j++) {
                 StackPane circlePane = new StackPane();
                 Circle circle = getCircle();
-                Circle circle = new Circle(100);
-                circle.setStroke(Color.BLACK);
-                circle.setFill(Color.WHITE);
                 circlePane.getChildren().add(circle);
+                getArcs(circlePane);
                 mainPane.add(circlePane, j, i);
             }
         }
         Scene scene = new Scene(mainPane);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void getArcs(StackPane pane) {
+        Arc arc = new Arc();
+        pane.getChildren().add(arc);
     }
 
     private Circle getCircle() {
