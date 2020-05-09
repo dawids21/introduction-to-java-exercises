@@ -79,9 +79,25 @@
         <groupId>org.openjfx</groupId>
         <artifactId>javafx-maven-plugin</artifactId>
         <version>0.0.4</version>
-        <configuration>
-          <mainClass>${project.name}.App</mainClass>
-        </configuration>
+        <executions>
+          <execution>
+            <!-- Default configuration for running -->
+            <id>default-cli</id>
+            <configuration>
+              <mainClass>${project.name}.App</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <!-- Configuration for debugging -->
+            <id>debug</id>
+            <configuration>
+              <options>
+                <option>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=*:8000</option>
+              </options>
+              <mainClass>${project.name}.App</mainClass>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>
