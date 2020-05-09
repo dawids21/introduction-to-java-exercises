@@ -13,7 +13,11 @@
             "label": "maven javafx run",
             "type": "shell",
             "command": "mvn javafx:run",
-            "group": "build"
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": []
         },
         {
             "label": "test",
