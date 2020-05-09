@@ -10,6 +10,12 @@
             "group": "build"
         },
         {
+            "label": "maven javafx run",
+            "type": "shell",
+            "command": "mvn javafx:run",
+            "group": "build"
+        },
+        {
             "label": "test",
             "type": "shell",
             "command": "mvn -B test",
