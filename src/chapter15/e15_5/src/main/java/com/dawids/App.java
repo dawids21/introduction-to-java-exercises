@@ -48,7 +48,7 @@ public class App extends Application {
                 return Double.parseDouble(string);
             }
         };
-        fieldFutureVal.setTextFormatter(new TextFormatter<Double>(converter, 0.0));
+        fieldFutureVal.setTextFormatter(new TextFormatter<>(converter, 0.0));
         gridPane.add(fieldInvestAmount, 1, 0);
         gridPane.add(fieldNumOfYears, 1, 1);
         gridPane.add(fieldAnnInterestRate, 1, 2);
@@ -69,7 +69,7 @@ public class App extends Application {
         double numOfYears = Double.parseDouble(fieldNumOfYears.getText());
         double annualInterestRate = Double.parseDouble(fieldAnnInterestRate.getText());
         double futureValue = investAmount * Math.pow(1 + (annualInterestRate / 1200.0), numOfYears * 12);
-        fieldFutureVal.setText(String.valueOf(futureValue));
+        ((TextFormatter<Double>) fieldFutureVal.getTextFormatter()).setValue(futureValue);
     }
 
     private void createLabels(GridPane gridPane) {
