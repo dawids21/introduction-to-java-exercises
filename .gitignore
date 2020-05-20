@@ -6,4 +6,5 @@ src/chapter14/*/.classpath
 src/chapter14/*/.settings
 src/chapter14/fx_tests
 src/*/*/.idea
+src/*/*/*.iml
 src/*/*/target
