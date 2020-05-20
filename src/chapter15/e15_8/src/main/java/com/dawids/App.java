@@ -2,8 +2,8 @@ package com.dawids;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 
@@ -12,13 +12,35 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
+    //@Override
+    //public void start(Stage stage) {
+    //    var pane = new Pane();
+    //    var text = new Text();
+    //    pane.getChildren().add(text);
+    //    pane.setOnMouseClicked(event -> {
+    //        text.setX(event.getX());
+    //        text.setY(event.getY());
+    //        text.setText("(" + event.getX() + ", " + event.getY() + ")");
+    //    });
+    //    var scene = new Scene(pane, 640, 480);
+    //    stage.setScene(scene);
+    //    stage.show();
+    //}
+
     @Override
     public void start(Stage stage) {
-        var javaVersion = SystemInfo.javaVersion();
-        var javafxVersion = SystemInfo.javafxVersion();
 
-        var label = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
-        var scene = new Scene(new StackPane(label), 640, 480);
+        var pane = new Pane();
+        var text = new Text();
+        pane.getChildren().add(text);
+        pane.setOnMousePressed(event -> {
+            text.setX(event.getX());
+            text.setY(event.getY());
+            text.setText("(" + event.getX() + ", " + event.getY() + ")");
+            text.setVisible(true);
+        });
+        pane.setOnMouseReleased(event -> text.setVisible(false));
+        var scene = new Scene(pane, 640, 480);
         stage.setScene(scene);
         stage.show();
     }
