@@ -30,10 +30,6 @@ public class App extends Application {
         animation.setCycleCount(Animation.INDEFINITE);
         animation.setInterpolator(Interpolator.LINEAR);
 
-        body.setFill(Color.RED);
-
-        roof.setFill(Color.LIGHTBLUE);
-
         car.setOnMousePressed(event -> animation.pause());
         car.setOnMouseReleased(event -> animation.play());
 
@@ -60,6 +56,11 @@ public class App extends Application {
         var wheelBack = new Circle(70, 50, 10);
         var body = new Rectangle(0, 20, 100, 20);
         var roof = new Polygon(20, 20, 80, 20, 60, 0, 40, 0);
+
+        body.setFill(Color.RED);
+
+        roof.setFill(Color.LIGHTBLUE);
+
         return new Group(wheelFront, wheelBack, body, roof);
     }
 
