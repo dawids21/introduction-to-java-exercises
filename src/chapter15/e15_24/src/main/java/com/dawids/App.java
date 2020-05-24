@@ -1,7 +1,7 @@
 package com.dawids;
 
 import javafx.animation.Animation;
-import javafx.animation.Interpolator;
+import javafx.animation.FadeTransition;
 import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -24,27 +24,41 @@ public class App extends Application {
         var pane = new Pane();
         var arc = new Arc(320, 240, 240, 100, 210, 120);
         var circle = new Circle(40);
-        var animation = new PathTransition(Duration.millis(2000), arc, circle);
+        var transition = new PathTransition(Duration.millis(2000), arc, circle);
+        var fading = new FadeTransition();
 
         circle.setFill(Color.VIOLET);
         circle.setStroke(Color.BLACK);
-        circle.setOnMousePressed(event -> animation.pause());
-        circle.setOnMouseReleased(event -> animation.play());
+        circle.setOnMousePressed(event -> {
+            transition.pause();
+            fading.pause();
+        });
+        circle.setOnMouseReleased(event -> {
+            transition.play();
+            fading.play();
+        });
 
         arc.setFill(Color.WHITE);
         arc.setStroke(Color.BLACK);
         arc.setType(ArcType.OPEN);
 
-        animation.setAutoReverse(true);
-        animation.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
-        animation.setCycleCount(Animation.INDEFINITE);
-        animation.setInterpolator(Interpolator.LINEAR);
+        transition.setAutoReverse(true);
+        transition.setOrientation(PathTransition.OrientationType.ORTHOGONAL_TO_TANGENT);
+        transition.setCycleCount(Animation.INDEFINITE);
+
+        fading.setNode(circle);
+        fading.setFromValue(0.1);
+        fading.setToValue(1);
+        fading.setDuration(new Duration(transition.getDuration().toMillis() / 2));
+        fading.setCycleCount(Animation.INDEFINITE);
+        fading.setAutoReverse(true);
 
         pane.getChildren().addAll(arc, circle);
         var scene = new Scene(pane, 640, 480);
         stage.setScene(scene);
         stage.show();
-        animation.play();
+        transition.play();
+        fading.play();
     }
 
     public static void main(String[] args) {
