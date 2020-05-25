@@ -2,6 +2,7 @@ package com.dawids;
 
 public class RandomWalkControl {
     private final Point head = new Point();
+    private final boolean[][] freeSpots;
 
     public RandomWalkControl() {
         this(10);
@@ -10,6 +11,8 @@ public class RandomWalkControl {
     public RandomWalkControl(int size) {
         head.setX(size / 2);
         head.setY(size / 2);
+        freeSpots = new boolean[size][size];
+        freeSpots[size / 2][size / 2] = true;
     }
 
     public void makeMove(Directions direction) {
@@ -27,6 +30,7 @@ public class RandomWalkControl {
                 head.setX(head.getX() - 1);
                 break;
         }
+        freeSpots[head.getX()][head.getY()] = true;
     }
 
     public enum Directions {
