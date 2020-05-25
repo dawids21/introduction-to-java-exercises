@@ -47,8 +47,11 @@ public class App extends Application {
     }
 
     private void dropBall() {
-        var ball = new Circle(5);
         var positions = beanMachine.simulateFall();
+        if (positions == null) {
+            return;
+        }
+        var ball = new Circle(5);
         var animation = makeAnimation(ball, positions);
         ball.setFill(Color.ORANGE);
 
