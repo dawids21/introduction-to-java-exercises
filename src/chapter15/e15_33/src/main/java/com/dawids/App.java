@@ -25,6 +25,8 @@ public class App extends Application {
         var mainPane = new BorderPane();
         var scene = new Scene(mainPane, WIDTH, HEIGHT);
 
+        buttonDrop.setOnAction(event -> dropBall());
+
         BorderPane.setAlignment(buttonDrop, Pos.CENTER);
 
         mainPane.setCenter(beanMachinePane);
@@ -33,6 +35,9 @@ public class App extends Application {
 
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void dropBall() {
     }
 
     public static void main(String[] args) {
