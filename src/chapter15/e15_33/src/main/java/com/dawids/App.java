@@ -71,6 +71,9 @@ public class App extends Application {
             } else {
                 animation.getChildren().add(makeCurveFall(row, positions[row], FallDirection.RIGHT));
             }
+            var fall = new TranslateTransition(Duration.millis(500));
+            fall.setByY(20);
+            animation.getChildren().add(fall);
         }
 
         return animation;
