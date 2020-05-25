@@ -1,11 +1,14 @@
 package com.dawids;
 
+import javafx.animation.SequentialTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 
 
@@ -39,6 +42,18 @@ public class App extends Application {
     }
 
     private void dropBall() {
+        var ball = new Circle(WIDTH / 2.0, -5, 5);
+        var positions = beanMachine.simulateFall();
+        var animation = makeAnimation(ball, positions);
+        ball.setFill(Color.ORANGE);
+
+        beanMachinePane.getChildren().add(ball);
+        animation.play();
+    }
+
+    private SequentialTransition makeAnimation(Circle ball, int[] positions) {
+        var animation = new SequentialTransition(ball);
+        return animation;
     }
 
     public static void main(String[] args) {
