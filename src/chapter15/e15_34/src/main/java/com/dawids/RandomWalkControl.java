@@ -7,9 +7,9 @@ public class RandomWalkControl {
         this(10);
     }
 
-    public RandomWalkControl(double size) {
-        head.setX((int) (size / 2));
-        head.setY((int) (size / 2));
+    public RandomWalkControl(int size) {
+        head.setX(size / 2);
+        head.setY(size / 2);
     }
 
     public void makeMove(Directions direction) {
