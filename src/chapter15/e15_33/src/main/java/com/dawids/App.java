@@ -1,5 +1,6 @@
 package com.dawids;
 
+import javafx.animation.PathTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
 import javafx.application.Application;
@@ -60,7 +61,18 @@ public class App extends Application {
         firstFall.setByY(100);
         animation.getChildren().add(firstFall);
 
+        for (var row = 0; row < 6; row++) {
+            animation.getChildren().add(makeCurveFall(ball, row, positions[row]));
+        }
+
         return animation;
+    }
+
+    private PathTransition makeCurveFall(Circle ball, int row, int position) {
+        var path = new Arc();
+        var pathTransition = new PathTransition(Duration.millis(1000), path, ball);
+
+        return pathTransition;
     }
 
     public static void main(String[] args) {
