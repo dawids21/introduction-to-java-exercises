@@ -57,15 +57,15 @@ public class App extends Application {
     private SequentialTransition makeAnimation(Circle ball, int[] positions) {
         var animation = new SequentialTransition(ball);
 
-        var firstFall = new TranslateTransition(Duration.millis(2000), ball);
+        var firstFall = new TranslateTransition(Duration.millis(2000));
         firstFall.setByY(100);
         animation.getChildren().add(firstFall);
 
         for (var row = 0; row < 6; row++) {
             if (positions[row] == positions[row + 1]) {
-                animation.getChildren().add(makeCurveFall(ball, row, positions[row], FallDirection.LEFT));
+                animation.getChildren().add(makeCurveFall(row, positions[row], FallDirection.LEFT));
             } else {
-                animation.getChildren().add(makeCurveFall(ball, row, positions[row], FallDirection.RIGHT));
+                animation.getChildren().add(makeCurveFall(row, positions[row], FallDirection.RIGHT));
             }
         }
 
@@ -77,10 +77,10 @@ public class App extends Application {
         LEFT;
     }
 
-    private PathTransition makeCurveFall(Circle ball, int row, int position, FallDirection direction) {
+    private PathTransition makeCurveFall(int row, int position, FallDirection direction) {
 
         var path = new Arc();
-        var pathTransition = new PathTransition(Duration.millis(1000), path, ball);
+        var pathTransition = new PathTransition(Duration.millis(1000), path);
 
         return pathTransition;
     }
