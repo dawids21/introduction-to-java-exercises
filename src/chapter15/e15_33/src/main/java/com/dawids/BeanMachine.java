@@ -14,6 +14,14 @@ public class BeanMachine {
     }
 
     public int[] simulateFall() {
+        for (var i = 0; i < 8; i++) {
+            if (numberOfBallsInRows[i] != MAX_NUM_OF_BALLS_IN_ROW) {
+                break;
+            }
+            if (i == 7) {
+                return null;
+            }
+        }
         var positions = new int[8];
         do {
             positions[0] = 0;
