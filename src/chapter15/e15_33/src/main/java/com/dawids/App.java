@@ -59,7 +59,7 @@ public class App extends Application {
     private SequentialTransition makeAnimation(Circle ball, int[] positions) {
         var animation = new SequentialTransition(ball);
 
-        var firstFall = new TranslateTransition(Duration.millis(2000));
+        var firstFall = new TranslateTransition(Duration.millis(1000));
         firstFall.setFromX(WIDTH / 2.0);
         firstFall.setFromY(-15);
         firstFall.setByY(100);
@@ -74,7 +74,7 @@ public class App extends Application {
             if (row == 6) {
                 break;
             }
-            var fall = new TranslateTransition(Duration.millis(500));
+            var fall = new TranslateTransition(Duration.millis(300));
             fall.setByY(20);
             animation.getChildren().add(fall);
         }
@@ -95,7 +95,7 @@ public class App extends Application {
     private PathTransition makeCurveFall(int row, int position, FallDirection direction) {
 
         var path = new Arc();
-        var pathTransition = new PathTransition(Duration.millis(500), path);
+        var pathTransition = new PathTransition(Duration.millis(300), path);
 
         path.setCenterX(WIDTH / 2.0 - 15 * row + 30 * position);
         path.setCenterY(95 + 30 * row);
