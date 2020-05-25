@@ -17,7 +17,7 @@ public class BeanMachine {
         var positions = new int[8];
         do {
             positions[0] = 0;
-            for (int i = 1; i < numberOfBallsInRows.length - 1; i++) {
+            for (int i = 1; i < numberOfBallsInRows.length; i++) {
                 if (Math.random() > 0.5) {
                     positions[i] = positions[i - 1] + 1;
                 } else {
