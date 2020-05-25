@@ -1,6 +1,7 @@
 package com.dawids;
 
 import javafx.animation.SequentialTransition;
+import javafx.animation.TranslateTransition;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -10,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 /**
@@ -53,6 +55,11 @@ public class App extends Application {
 
     private SequentialTransition makeAnimation(Circle ball, int[] positions) {
         var animation = new SequentialTransition(ball);
+
+        var firstFall = new TranslateTransition(Duration.millis(2000), ball);
+        firstFall.setByY(100);
+        animation.getChildren().add(firstFall);
+
         return animation;
     }
 
