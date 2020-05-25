@@ -7,8 +7,8 @@ import javafx.scene.shape.Line;
 
 public class LatticePane extends Pane {
 
-    private double size;
-    private Point head = new Point();
+    private final double size;
+    private final Point head = new Point();
 
     public LatticePane() {
         this(10.0);
