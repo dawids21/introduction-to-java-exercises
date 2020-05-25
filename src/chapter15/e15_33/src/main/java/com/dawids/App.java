@@ -45,7 +45,7 @@ public class App extends Application {
     }
 
     private void dropBall() {
-        var ball = new Circle(WIDTH / 2.0, -15, 5);
+        var ball = new Circle(5);
         var positions = beanMachine.simulateFall();
         var animation = makeAnimation(ball, positions);
         ball.setFill(Color.ORANGE);
@@ -58,6 +58,8 @@ public class App extends Application {
         var animation = new SequentialTransition(ball);
 
         var firstFall = new TranslateTransition(Duration.millis(2000));
+        firstFall.setFromX(WIDTH / 2.0);
+        firstFall.setFromY(-15);
         firstFall.setByY(100);
         animation.getChildren().add(firstFall);
 
