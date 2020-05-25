@@ -11,4 +11,28 @@ public class RandomWalkControl {
         head.setX((int) (size / 2));
         head.setY((int) (size / 2));
     }
+
+    public void makeMove(Directions direction) {
+        switch (direction) {
+            case UP:
+                head.setY(head.getY() - 1);
+                break;
+            case DOWN:
+                head.setY(head.getY() + 1);
+                break;
+            case RIGHT:
+                head.setX(head.getX() + 1);
+                break;
+            case LEFT:
+                head.setX(head.getX() - 1);
+                break;
+        }
+    }
+
+    public enum Directions {
+        UP,
+        DOWN,
+        RIGHT,
+        LEFT;
+    }
 }
