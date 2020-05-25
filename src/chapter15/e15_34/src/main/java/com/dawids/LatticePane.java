@@ -7,6 +7,7 @@ import javafx.scene.shape.Line;
 
 public class LatticePane extends Pane {
 
+    private double size;
     private Point head = new Point();
 
     public LatticePane() {
@@ -14,12 +15,13 @@ public class LatticePane extends Pane {
     }
 
     public LatticePane(double size) {
-        getChildren().add(drawLines(size));
+        this.size = size;
+        getChildren().add(drawLines());
         head.setX((int) (size / 2));
         head.setY((int) (size / 2));
     }
 
-    private Group drawLines(double size) {
+    private Group drawLines() {
         var grid = new Group();
         for (var i = 0; i < size; i++) {
             var lineHorizontal = new Line();
