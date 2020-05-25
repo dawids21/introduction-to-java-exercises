@@ -14,7 +14,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         var borderPane = new BorderPane();
-        borderPane.setCenter(new Lattice(20));
+        borderPane.setCenter(new LatticePane(20));
         var scene = new Scene(borderPane, 640, 480);
         stage.setScene(scene);
         stage.show();
