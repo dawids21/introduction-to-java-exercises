@@ -63,6 +63,7 @@ public class App extends Application {
         firstFall.setFromX(WIDTH / 2.0);
         firstFall.setFromY(-15);
         firstFall.setByY(100);
+        firstFall.setInterpolator(Interpolator.LINEAR);
         animation.getChildren().add(firstFall);
 
         for (var row = 0; row <= 6; row++) {
@@ -82,6 +83,7 @@ public class App extends Application {
         var ballNumInRow = beanMachine.getNumOfBallsInRow(positions[7]) - 1;
         var lastFall = new TranslateTransition(Duration.millis(600 - ballNumInRow * 100));
         lastFall.setByY(60 - ballNumInRow * 10);
+        lastFall.setInterpolator(Interpolator.LINEAR);
         animation.getChildren().add(lastFall);
 
         return animation;
