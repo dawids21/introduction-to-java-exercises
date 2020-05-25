@@ -40,4 +40,36 @@ public class LatticePane extends Pane {
         }
         return grid;
     }
+
+    public void makeMove(Directions direction) {
+        var move = new Line();
+        move.setStrokeWidth(4);
+        move.startXProperty().bind(widthProperty().divide(size).multiply(head.getX()));
+        move.startYProperty().bind(heightProperty().divide(size).multiply(head.getY()));
+        switch (direction) {
+            case UP:
+                head.setY(head.getY() - 1);
+                break;
+            case DOWN:
+                head.setY(head.getY() + 1);
+                break;
+            case RIGHT:
+                head.setX(head.getX() + 1);
+                break;
+            case LEFT:
+                head.setX(head.getX() - 1);
+                break;
+        }
+        move.endXProperty().bind(widthProperty().divide(size).multiply(head.getX()));
+        move.endYProperty().bind(heightProperty().divide(size).multiply(head.getY()));
+        getChildren().add(move);
+    }
+
+    public enum Directions {
+        UP,
+        DOWN,
+        RIGHT,
+        LEFT;
+    }
+
 }
