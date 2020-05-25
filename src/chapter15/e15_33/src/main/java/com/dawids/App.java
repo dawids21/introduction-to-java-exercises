@@ -18,10 +18,10 @@ public class App extends Application {
     public static final int HEIGHT = 480;
 
     private final BeanMachinePane beanMachinePane = new BeanMachinePane(WIDTH);
+    private final BeanMachine beanMachine = new BeanMachine();
 
     @Override
     public void start(Stage stage) {
-        var beanMachine = new BeanMachine();
         var buttonDrop = new Button("Drop ball");
         var mainPane = new BorderPane();
         var scene = new Scene(mainPane, WIDTH, HEIGHT);
