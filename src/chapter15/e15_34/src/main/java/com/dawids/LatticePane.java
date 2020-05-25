@@ -5,12 +5,12 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 
-public class Lattice extends Pane {
-    public Lattice() {
+public class LatticePane extends Pane {
+    public LatticePane() {
         this(10.0);
     }
 
-    public Lattice(double size) {
+    public LatticePane(double size) {
         getChildren().add(drawLines(size));
     }
 
