@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Arc;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -83,6 +84,13 @@ public class App extends Application {
 
         var path = new Arc();
         var pathTransition = new PathTransition(Duration.millis(1000), path);
+
+        path.setCenterX(WIDTH / 2.0 - 15 * row + 30 * position);
+        path.setCenterY(95 + 40 * row);
+        path.setRadiusX(15);
+        path.setRadiusY(10);
+        path.setStartAngle(90);
+        path.setLength(direction == FallDirection.LEFT ? 90 : -90);
 
         return pathTransition;
     }
