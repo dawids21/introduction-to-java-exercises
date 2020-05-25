@@ -62,13 +62,23 @@ public class App extends Application {
         animation.getChildren().add(firstFall);
 
         for (var row = 0; row < 6; row++) {
-            animation.getChildren().add(makeCurveFall(ball, row, positions[row]));
+            if (positions[row] == positions[row + 1]) {
+                animation.getChildren().add(makeCurveFall(ball, row, positions[row], FallDirection.LEFT));
+            } else {
+                animation.getChildren().add(makeCurveFall(ball, row, positions[row], FallDirection.RIGHT));
+            }
         }
 
         return animation;
     }
 
-    private PathTransition makeCurveFall(Circle ball, int row, int position) {
+    private enum FallDirection {
+        RIGHT,
+        LEFT;
+    }
+
+    private PathTransition makeCurveFall(Circle ball, int row, int position, FallDirection direction) {
+
         var path = new Arc();
         var pathTransition = new PathTransition(Duration.millis(1000), path, ball);
 
