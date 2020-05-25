@@ -79,6 +79,11 @@ public class App extends Application {
             animation.getChildren().add(fall);
         }
 
+        var ballNumInRow = beanMachine.getNumOfBallsInRow(positions[7]) - 1;
+        var lastFall = new TranslateTransition(Duration.millis(600 - ballNumInRow * 100));
+        lastFall.setByY(60 - ballNumInRow * 10);
+        animation.getChildren().add(lastFall);
+
         return animation;
     }
 
