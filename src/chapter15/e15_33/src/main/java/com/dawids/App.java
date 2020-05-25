@@ -65,11 +65,14 @@ public class App extends Application {
         firstFall.setByY(100);
         animation.getChildren().add(firstFall);
 
-        for (var row = 0; row < 6; row++) {
+        for (var row = 0; row <= 6; row++) {
             if (positions[row] == positions[row + 1]) {
                 animation.getChildren().add(makeCurveFall(row, positions[row], FallDirection.LEFT));
             } else {
                 animation.getChildren().add(makeCurveFall(row, positions[row], FallDirection.RIGHT));
+            }
+            if (row == 6) {
+                break;
             }
             var fall = new TranslateTransition(Duration.millis(500));
             fall.setByY(20);
