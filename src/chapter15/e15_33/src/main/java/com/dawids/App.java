@@ -2,6 +2,7 @@ package com.dawids;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 
@@ -17,6 +18,7 @@ public class App extends Application {
     public void start(Stage stage) {
         var beanMachinePane = new BeanMachinePane(WIDTH);
         var beanMachine = new BeanMachine();
+        var buttonDrop = new Button("Drop ball");
         var scene = new Scene(mainPane, WIDTH, HEIGHT);
         stage.setScene(scene);
         stage.show();
