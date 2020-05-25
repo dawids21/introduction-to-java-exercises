@@ -15,8 +15,7 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        var beanMachinePane = new BeanMachinePane(640);
-        var scene = new Scene(beanMachinePane, 640, 480);
+        var beanMachinePane = new BeanMachinePane(WIDTH);
         var beanMachine = new BeanMachine();
         var scene = new Scene(mainPane, WIDTH, HEIGHT);
         stage.setScene(scene);
