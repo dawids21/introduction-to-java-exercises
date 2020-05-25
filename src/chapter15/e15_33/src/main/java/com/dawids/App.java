@@ -1,5 +1,6 @@
 package com.dawids;
 
+import javafx.animation.Interpolator;
 import javafx.animation.PathTransition;
 import javafx.animation.SequentialTransition;
 import javafx.animation.TranslateTransition;
@@ -83,14 +84,16 @@ public class App extends Application {
     private PathTransition makeCurveFall(int row, int position, FallDirection direction) {
 
         var path = new Arc();
-        var pathTransition = new PathTransition(Duration.millis(1000), path);
+        var pathTransition = new PathTransition(Duration.millis(500), path);
 
         path.setCenterX(WIDTH / 2.0 - 15 * row + 30 * position);
-        path.setCenterY(95 + 40 * row);
+        path.setCenterY(95 + 30 * row);
         path.setRadiusX(15);
         path.setRadiusY(10);
         path.setStartAngle(90);
         path.setLength(direction == FallDirection.LEFT ? 90 : -90);
+
+        pathTransition.setInterpolator(Interpolator.LINEAR);
 
         return pathTransition;
     }
