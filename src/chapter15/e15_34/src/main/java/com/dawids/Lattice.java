@@ -17,12 +17,19 @@ public class Lattice extends Pane {
     private Group drawLines(double size) {
         var grid = new Group();
         for (var i = 0; i < size; i++) {
-            var line = new Line();
-            line.startYProperty().bind(heightProperty().divide(size).multiply(i));
-            line.endXProperty().bind(widthProperty());
-            line.endYProperty().bind(line.startYProperty());
-            line.setStroke(Color.GRAY);
-            grid.getChildren().add(line);
+            var lineHorizontal = new Line();
+            lineHorizontal.startYProperty().bind(heightProperty().divide(size).multiply(i));
+            lineHorizontal.endXProperty().bind(widthProperty());
+            lineHorizontal.endYProperty().bind(lineHorizontal.startYProperty());
+            lineHorizontal.setStroke(Color.GRAY);
+            grid.getChildren().add(lineHorizontal);
+
+            var lineVertical = new Line();
+            lineVertical.startXProperty().bind(widthProperty().divide(size).multiply(i));
+            lineVertical.endXProperty().bind(lineVertical.startXProperty());
+            lineVertical.endYProperty().bind(heightProperty());
+            lineVertical.setStroke(Color.GRAY);
+            grid.getChildren().add(lineVertical);
         }
         return grid;
     }
