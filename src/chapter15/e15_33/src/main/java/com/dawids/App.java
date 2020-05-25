@@ -1,8 +1,11 @@
 package com.dawids;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 
@@ -19,7 +22,15 @@ public class App extends Application {
         var beanMachinePane = new BeanMachinePane(WIDTH);
         var beanMachine = new BeanMachine();
         var buttonDrop = new Button("Drop ball");
+        var mainPane = new BorderPane();
         var scene = new Scene(mainPane, WIDTH, HEIGHT);
+
+        BorderPane.setAlignment(buttonDrop, Pos.CENTER);
+
+        mainPane.setCenter(beanMachinePane);
+        mainPane.setBottom(buttonDrop);
+        mainPane.setPadding(new Insets(10));
+
         stage.setScene(scene);
         stage.show();
     }
