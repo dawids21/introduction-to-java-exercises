@@ -10,10 +10,10 @@ public class LatticePane extends Pane {
     private final double size;
 
     public LatticePane() {
-        this(10.0);
+        this(10);
     }
 
-    public LatticePane(double size) {
+    public LatticePane(int size) {
         this.size = size;
         getChildren().add(drawLines());
     }
