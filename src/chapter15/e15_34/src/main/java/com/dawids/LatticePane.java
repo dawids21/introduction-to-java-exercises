@@ -20,7 +20,7 @@ public class LatticePane extends Pane {
 
     private Group drawLines() {
         var grid = new Group();
-        for (var i = 0; i < size; i++) {
+        for (var i = 0; i <= size; i++) {
             var lineHorizontal = new Line();
             lineHorizontal.startYProperty().bind(heightProperty().divide(size).multiply(i));
             lineHorizontal.endXProperty().bind(widthProperty());
