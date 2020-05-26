@@ -1,8 +1,6 @@
 package com.dawids;
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.PauseTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
@@ -36,27 +34,26 @@ public class App extends Application {
         stage.show();
     }
 
-    private Timeline animation;
-
     private void startRandomWalk() {
         var latticePane = new LatticePane(20);
         var control = new RandomWalkControl(20, latticePane);
         borderPane.setCenter(latticePane);
-        animation = new Timeline(new KeyFrame(new Duration(100), event -> simulateRandomWalk(control, event)));
-        animation.setCycleCount(Animation.INDEFINITE);
+        var animation = new PauseTransition(new Duration(100));
+        animation.setOnFinished(event -> simulateRandomWalk(control, event));
+        animation.setCycleCount(1);
         animation.play();
     }
 
     private void simulateRandomWalk(RandomWalkControl control, ActionEvent event) {
         try {
             control.makeMove();
+            ((PauseTransition) event.getSource()).play();
         } catch (NoMoreMoveException e) {
             if (e.isReachBoundary()) {
                 System.out.println("Success");
             } else {
                 System.out.println("Failure");
             }
-            animation.stop();
         }
     }
 
