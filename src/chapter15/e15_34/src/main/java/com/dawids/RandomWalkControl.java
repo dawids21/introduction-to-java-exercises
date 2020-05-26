@@ -53,7 +53,7 @@ public class RandomWalkControl {
         var currentY = head.getY();
         var availableMoves = new ArrayList<Directions>();
         if (currentX + 1 > size || currentX - 1 < 0 || currentY + 1 > size || currentY - 1 < 0) {
-            throw new NoMoreMoveException(); //todo add distionciton between no moves and boundary moves
+            throw new NoMoreMoveException(head, true);
         }
         if (!occupiedPlaces[currentX + 1][currentY]) {
             availableMoves.add(Directions.RIGHT);
@@ -68,7 +68,7 @@ public class RandomWalkControl {
             availableMoves.add(Directions.UP);
         }
         if (availableMoves.size() == 0) {
-            throw new NoMoreMoveException();
+            throw new NoMoreMoveException(head, false);
         }
         Collections.shuffle(availableMoves);
         moveHead(availableMoves.get(0));
