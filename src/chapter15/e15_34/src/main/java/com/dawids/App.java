@@ -20,7 +20,7 @@ public class App extends Application {
         var latticePane = new LatticePane(20);
         var startButton = new Button("Start");
 
-        startButton.setOnAction(event -> simulateRandomWalk());
+        startButton.setOnAction(event -> startRandomWalk());
 
         BorderPane.setAlignment(startButton, Pos.CENTER);
 
@@ -31,7 +31,7 @@ public class App extends Application {
         stage.show();
     }
 
-    private void simulateRandomWalk() {
+    private void startRandomWalk() {
         var latticePane = new LatticePane(20);
         var control = new RandomWalkControl(20, latticePane);
         borderPane.setCenter(latticePane);
