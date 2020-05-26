@@ -18,7 +18,7 @@ public class RandomWalkControl {
         this.latticePane = latticePane;
         head.setX(size / 2);
         head.setY(size / 2);
-        occupiedPlaces = new boolean[size][size];
+        occupiedPlaces = new boolean[size + 1][size + 1];
         occupiedPlaces[size / 2][size / 2] = true;
     }
 
