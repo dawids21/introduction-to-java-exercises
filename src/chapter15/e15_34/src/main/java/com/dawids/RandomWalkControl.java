@@ -17,7 +17,7 @@ public class RandomWalkControl {
         occupiedPlaces[size / 2][size / 2] = true;
     }
 
-    public void makeMove(Directions direction) {
+    public void moveHead(Directions direction) {
         switch (direction) {
             case UP:
                 head.setY(head.getY() - 1);
