@@ -16,11 +16,13 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         var borderPane = new BorderPane();
+        var latticePane = new LatticePane(20);
+        var control = new RandomWalkControl(20, latticePane);
         var startButton = new Button("Start");
 
         BorderPane.setAlignment(startButton, Pos.CENTER);
 
-        borderPane.setCenter(new LatticePane(20));
+        borderPane.setCenter(latticePane);
         borderPane.setBottom(startButton);
         var scene = new Scene(borderPane, 640, 480);
         stage.setScene(scene);
