@@ -38,13 +38,29 @@ public class LatticePane extends Pane {
         return grid;
     }
 
-    public void drawMove(Point head, int x, int y) {
+    public void drawMove(Point head, RandomWalkControl.Directions direction) {
         var move = new Line();
         move.setStrokeWidth(4);
         move.startXProperty().bind(widthProperty().divide(size).multiply(head.getX()));
         move.startYProperty().bind(heightProperty().divide(size).multiply(head.getY()));
-        move.endXProperty().bind(widthProperty().divide(size).multiply(x));
-        move.endYProperty().bind(heightProperty().divide(size).multiply(y));
+        switch (direction) {
+            case UP:
+                move.endXProperty().bind(widthProperty().divide(size).multiply(head.getX()));
+                move.endYProperty().bind(heightProperty().divide(size).multiply(head.getY() - 1));
+                break;
+            case DOWN:
+                move.endXProperty().bind(widthProperty().divide(size).multiply(head.getX()));
+                move.endYProperty().bind(heightProperty().divide(size).multiply(head.getY() + 1));
+                break;
+            case RIGHT:
+                move.endXProperty().bind(widthProperty().divide(size).multiply(head.getX() + 1));
+                move.endYProperty().bind(heightProperty().divide(size).multiply(head.getY()));
+                break;
+            case LEFT:
+                move.endXProperty().bind(widthProperty().divide(size).multiply(head.getX() - 1));
+                move.endYProperty().bind(heightProperty().divide(size).multiply(head.getY()));
+                break;
+        }
         getChildren().add(move);
     }
 
