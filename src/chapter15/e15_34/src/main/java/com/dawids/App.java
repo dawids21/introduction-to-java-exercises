@@ -13,14 +13,14 @@ import javafx.stage.Stage;
  */
 public class App extends Application {
 
+    private final BorderPane borderPane = new BorderPane();
+
     @Override
     public void start(Stage stage) {
-        var borderPane = new BorderPane();
         var latticePane = new LatticePane(20);
-        var control = new RandomWalkControl(20, latticePane);
         var startButton = new Button("Start");
 
-        startButton.setOnAction(event -> simulateRandomWalk(control));
+        startButton.setOnAction(event -> simulateRandomWalk());
 
         BorderPane.setAlignment(startButton, Pos.CENTER);
 
@@ -31,7 +31,10 @@ public class App extends Application {
         stage.show();
     }
 
-    private void simulateRandomWalk(RandomWalkControl control) {
+    private void simulateRandomWalk() {
+        var latticePane = new LatticePane(20);
+        var control = new RandomWalkControl(20, latticePane);
+        borderPane.setCenter(latticePane);
         while (true) {
             try {
                 control.makeMove();
