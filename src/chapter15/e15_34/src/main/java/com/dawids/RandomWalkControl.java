@@ -3,12 +3,14 @@ package com.dawids;
 public class RandomWalkControl {
     private final Point head = new Point();
     private final boolean[][] occupiedPlaces;
+    private final LatticePane latticePane;
 
-    public RandomWalkControl() {
-        this(10);
+    public RandomWalkControl(LatticePane latticePane) {
+        this(10, latticePane);
     }
 
-    public RandomWalkControl(int size) {
+    public RandomWalkControl(int size, LatticePane latticePane) {
+        this.latticePane = latticePane;
         head.setX(size / 2);
         head.setY(size / 2);
         occupiedPlaces = new boolean[size][size];
