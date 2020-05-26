@@ -38,13 +38,13 @@ public class LatticePane extends Pane {
         return grid;
     }
 
-    public void drawMove(int x1, int y1, int x2, int y2) {
+    public void drawMove(Point head, int x, int y) {
         var move = new Line();
         move.setStrokeWidth(4);
-        move.startXProperty().bind(widthProperty().divide(size).multiply(x1));
-        move.startYProperty().bind(heightProperty().divide(size).multiply(y1));
-        move.endXProperty().bind(widthProperty().divide(size).multiply(x2));
-        move.endYProperty().bind(heightProperty().divide(size).multiply(y2));
+        move.startXProperty().bind(widthProperty().divide(size).multiply(head.getX()));
+        move.startYProperty().bind(heightProperty().divide(size).multiply(head.getY()));
+        move.endXProperty().bind(widthProperty().divide(size).multiply(x));
+        move.endYProperty().bind(heightProperty().divide(size).multiply(y));
         getChildren().add(move);
     }
 
