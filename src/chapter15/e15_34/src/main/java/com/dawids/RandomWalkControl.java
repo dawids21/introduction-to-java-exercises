@@ -20,6 +20,7 @@ public class RandomWalkControl {
     }
 
     public void moveHead(Directions direction) {
+        latticePane.drawMove(head, direction);
         switch (direction) {
             case UP:
                 head.setY(head.getY() - 1);
