@@ -1,5 +1,8 @@
 package com.dawids;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class RandomWalkControl {
     private final Point head = new Point();
     private final boolean[][] occupiedPlaces;
@@ -43,5 +46,31 @@ public class RandomWalkControl {
         DOWN,
         RIGHT,
         LEFT;
+    }
+
+    public void makeMove() throws NoMoreMoveException {
+        var currentX = head.getX();
+        var currentY = head.getY();
+        var availableMoves = new ArrayList<Directions>();
+        if (currentX + 1 > size || currentX - 1 < 0 || currentY + 1 > size || currentY - 1 < 0) {
+            throw new NoMoreMoveException(); //todo add distionciton between no moves and boundary moves
+        }
+        if (!occupiedPlaces[currentX + 1][currentY]) {
+            availableMoves.add(Directions.RIGHT);
+        }
+        if (!occupiedPlaces[currentX - 1][currentY]) {
+            availableMoves.add(Directions.LEFT);
+        }
+        if (!occupiedPlaces[currentX][currentY + 1]) {
+            availableMoves.add(Directions.DOWN);
+        }
+        if (!occupiedPlaces[currentX][currentY - 1]) {
+            availableMoves.add(Directions.UP);
+        }
+        if (availableMoves.size() == 0) {
+            throw new NoMoreMoveException();
+        }
+        Collections.shuffle(availableMoves);
+        moveHead(availableMoves.get(0));
     }
 }
