@@ -20,6 +20,8 @@ public class App extends Application {
         var control = new RandomWalkControl(20, latticePane);
         var startButton = new Button("Start");
 
+        startButton.setOnAction(event -> simulateRandomWalk(control));
+
         BorderPane.setAlignment(startButton, Pos.CENTER);
 
         borderPane.setCenter(latticePane);
@@ -27,6 +29,21 @@ public class App extends Application {
         var scene = new Scene(borderPane, 640, 480);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private void simulateRandomWalk(RandomWalkControl control) {
+        while (true) {
+            try {
+                control.makeMove();
+            } catch (NoMoreMoveException e) {
+                if (e.isReachBoundary()) {
+                    System.out.println("Success");
+                } else {
+                    System.out.println("Failure");
+                }
+                break;
+            }
+        }
     }
 
     public static void main(String[] args) {
