@@ -1,11 +1,16 @@
 package com.dawids;
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 /**
@@ -31,21 +36,27 @@ public class App extends Application {
         stage.show();
     }
 
+    private Timeline animation;
+
     private void startRandomWalk() {
         var latticePane = new LatticePane(20);
         var control = new RandomWalkControl(20, latticePane);
         borderPane.setCenter(latticePane);
-        while (true) {
-            try {
-                control.makeMove();
-            } catch (NoMoreMoveException e) {
-                if (e.isReachBoundary()) {
-                    System.out.println("Success");
-                } else {
-                    System.out.println("Failure");
-                }
-                break;
+        animation = new Timeline(new KeyFrame(new Duration(100), event -> simulateRandomWalk(control, event)));
+        animation.setCycleCount(Animation.INDEFINITE);
+        animation.play();
+    }
+
+    private void simulateRandomWalk(RandomWalkControl control, ActionEvent event) {
+        try {
+            control.makeMove();
+        } catch (NoMoreMoveException e) {
+            if (e.isReachBoundary()) {
+                System.out.println("Success");
+            } else {
+                System.out.println("Failure");
             }
+            animation.stop();
         }
     }
 
