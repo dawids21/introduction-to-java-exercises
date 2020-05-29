@@ -29,8 +29,10 @@ public class BitOutputStream {
         }
     }
 
-    public void writeBit(String bit) {
-
+    public void writeBit(String bit) throws IOException {
+        for (var i = 0; i < bit.length(); i++) {
+            writeBit(bit.charAt(i));
+        }
     }
 
     public void close() throws IOException {
