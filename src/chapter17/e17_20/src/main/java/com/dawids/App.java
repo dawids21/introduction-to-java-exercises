@@ -36,7 +36,6 @@ public class App extends Application {
         var saveButton = new Button("Save the change");
         var mainPane = new BorderPane();
 
-        textArea.setEditable(false);
         textArea.setWrapText(true);
 
         labelEnterFile.setAlignment(Pos.CENTER);
@@ -66,7 +65,12 @@ public class App extends Application {
         if (keyEvent.getCode() == KeyCode.ENTER) {
             try (var inputStream = new BitInputStream(new BufferedInputStream(new FileInputStream(((TextField) keyEvent.getSource())
                                                                                                           .getText())))) {
-                textArea.setText(inputStream.readByte()); //todo read all bytes
+                String readByte;
+                StringBuilder readFile = new StringBuilder();
+                while ((readByte = inputStream.readByte()) != null) {
+                    readFile.append(readByte);
+                }
+                textArea.setText(readFile.toString());
             } catch (FileNotFoundException e) {
                 textArea.setText("File not found");
             } catch (IOException e) {
