@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class BitOutputStream {
 
-    private final FileOutputStream output;
+    private FileOutputStream output;
     private byte writeByte = 0;
     private int byteSize = 0;
 
@@ -22,7 +22,10 @@ public class BitOutputStream {
 
     }
 
-    public void close() {
-
+    public void close() throws IOException {
+        if (output != null) {
+            output.close();
+            output = null;
+        }
     }
 }
