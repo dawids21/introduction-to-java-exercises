@@ -12,6 +12,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.*;
+
 
 /**
  * JavaFX App
@@ -54,7 +56,34 @@ public class App extends Application {
     }
 
     private void splitFile(String fileName, int numberOfPieces) {
-
+        if (numberOfPieces <= 0) {
+            System.out.println("You have to specify positive number of pieces");
+            return;
+        }
+        try (var inputStream = new BufferedInputStream(new FileInputStream(getClass().getResource(fileName)
+                                                                                     .getFile()))) {
+            var sizeOfFiles = inputStream.available() / numberOfPieces;
+            for (var i = 1; i <= numberOfPieces; i++) {
+                try (var outputStream = new BufferedOutputStream(new FileOutputStream(fileName + "." + i))) {
+                    if (i != numberOfPieces) {
+                        for (var size = 0; size < sizeOfFiles; size++) {
+                            outputStream.write(inputStream.read());
+                        }
+                    } else {
+                        int readValue;
+                        while ((readValue = inputStream.read()) != -1) {
+                            outputStream.write(readValue);
+                        }
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("You have to specify existing file.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
