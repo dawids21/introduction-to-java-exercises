@@ -18,8 +18,8 @@ public class BitOutputStream implements AutoCloseable{
         if (bit != '1' && bit != '0') {
             throw new IllegalArgumentException("Bit must be 0 or 1");
         } else {
-            writeByte |= (bit == '1' ? 1 : 0);
             writeByte <<= 1;
+            writeByte |= (bit == '1' ? 1 : 0);
             byteSize++;
         }
         if (byteSize == 8) {
