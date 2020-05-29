@@ -14,10 +14,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.stage.Stage;
 
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 
 
 /**
@@ -25,10 +22,9 @@ import java.io.IOException;
  */
 public class App extends Application {
 
-    private final TextArea textArea = new TextArea();
-
     @Override
     public void start(Stage stage) {
+        var textArea = new TextArea();
         var labelEnterFile = new Label("Enter a file:");
         var chooseFileTextField = new TextField();
         var topHBox = new HBox(5);
