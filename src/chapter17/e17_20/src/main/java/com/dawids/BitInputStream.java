@@ -13,7 +13,7 @@ public class BitInputStream extends FilterInputStream {
     public String readByte() throws IOException {
         var inputByte = read();
         if (inputByte == -1) {
-            return "";
+            return null;
         }
         return String.format("%8s", Integer.toBinaryString(inputByte)).replace(" ", "0");
     }
