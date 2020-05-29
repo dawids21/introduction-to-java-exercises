@@ -61,6 +61,16 @@ public class App extends Application {
         topHBox.setPadding(new Insets(5));
 
         BorderPane.setAlignment(saveButton, Pos.CENTER);
+        saveButton.setOnAction(event -> {
+            try (var outputStream = new BitOutputStream(new BufferedOutputStream(new FileOutputStream(
+                    chooseFileTextField.getText())))) {
+                outputStream.writeBit(textArea.getText());
+            } catch (FileNotFoundException e) {
+                textArea.setText("File not found");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         mainPane.setTop(topHBox);
         mainPane.setCenter(textArea);
