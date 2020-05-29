@@ -33,6 +33,7 @@ public class App extends Application {
         var mainPane = new BorderPane();
 
         BorderPane.setAlignment(startButton, Pos.CENTER);
+        startButton.setOnAction(event -> splitFile(fileTextField.getText(), Integer.parseInt(numTextField.getText())));
 
         centerPane.add(mainText, 0, 0, 2, 1);
         centerPane.add(enterFileLabel, 0, 1);
