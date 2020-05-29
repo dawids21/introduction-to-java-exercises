@@ -7,6 +7,8 @@ import java.io.IOException;
 public class BitOutputStream {
 
     private final FileOutputStream output;
+    private byte writeByte = 0;
+    private int byteSize = 0;
 
     public BitOutputStream(File output) throws IOException {
         this.output = new FileOutputStream(output);
