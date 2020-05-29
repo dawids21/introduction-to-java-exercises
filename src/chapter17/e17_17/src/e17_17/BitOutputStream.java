@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class BitOutputStream {
+public class BitOutputStream implements AutoCloseable{
 
     private FileOutputStream output;
     private byte writeByte = 0;
@@ -35,6 +35,7 @@ public class BitOutputStream {
         }
     }
 
+    @Override
     public void close() throws IOException {
         if (output != null) {
             output.close();
