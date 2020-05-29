@@ -21,7 +21,7 @@ import java.io.*;
 public class App extends Application {
     public static final double WIDTH = 640;
     public static final double HEIGHT = 480;
-    private static final String MAIN_TEXT = "If you split a file named temp.txt into 3 smaller files,\nthe three smaller files are temp.txt.1, temp.txt.2, and temp.txt.3.";
+    private static final String MAIN_TEXT = "If you split a file named test.txt into 3 smaller files,\nthe three smaller files are test.txt.1, test.txt.2, and test.txt.3.";
 
     @Override
     public void start(Stage stage) {
