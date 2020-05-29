@@ -38,8 +38,8 @@ public class App extends Application {
         chooseFileTextField.setMaxWidth(Double.MAX_VALUE);
         chooseFileTextField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                try (var inputStream = new BitInputStream(new BufferedInputStream(new FileInputStream(((TextField) event
-                        .getSource()).getText())))) {
+                try (var inputStream = new BitInputStream(new BufferedInputStream(new FileInputStream(
+                        chooseFileTextField.getText())))) {
                     String readByte;
                     StringBuilder readFile = new StringBuilder();
                     while ((readByte = inputStream.readByte()) != null) {
