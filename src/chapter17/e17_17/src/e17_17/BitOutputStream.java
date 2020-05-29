@@ -14,8 +14,19 @@ public class BitOutputStream {
         this.output = new FileOutputStream(output);
     }
 
-    public void writeBit(char bit) {
-
+    public void writeBit(char bit) throws IOException {
+        if (bit != '1' && bit != '0') {
+            throw new IllegalArgumentException("Bit must be 0 or 1");
+        } else {
+            writeByte &= (bit == '1' ? 1 : 0);
+            writeByte <<= 1;
+            byteSize++;
+        }
+        if (byteSize == 8) {
+            output.write(writeByte);
+            byteSize = 0;
+            writeByte = 0;
+        }
     }
 
     public void writeBit(String bit) {
