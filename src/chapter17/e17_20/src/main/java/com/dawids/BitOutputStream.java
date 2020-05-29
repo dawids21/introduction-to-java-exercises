@@ -1,17 +1,17 @@
 package com.dawids;
 
-import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FilterOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 
-public class BitOutputStream implements AutoCloseable {
+public class BitOutputStream extends FilterOutputStream {
 
-    private FileOutputStream output;
+    private boolean closed = false;
     private byte writeByte = 0;
     private int byteSize = 0;
 
-    public BitOutputStream(File output) throws IOException {
-        this.output = new FileOutputStream(output);
+    public BitOutputStream(OutputStream out) {
+        super(out);
     }
 
     public void writeBit(char bit) throws IOException {
@@ -23,7 +23,7 @@ public class BitOutputStream implements AutoCloseable {
             byteSize++;
         }
         if (byteSize == 8) {
-            output.write(writeByte);
+            write(writeByte);
             byteSize = 0;
             writeByte = 0;
         }
@@ -37,13 +37,13 @@ public class BitOutputStream implements AutoCloseable {
 
     @Override
     public void close() throws IOException {
-        if (output != null) {
+        if (!closed) {
             writeByte <<= 8 - byteSize;
-            output.write(writeByte);
+            write(writeByte);
             writeByte = 0;
             byteSize = 0;
-            output.close();
-            output = null;
+            super.close();
+            closed = true;
         }
     }
 }
