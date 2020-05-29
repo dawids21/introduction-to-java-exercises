@@ -38,6 +38,10 @@ public class BitOutputStream implements AutoCloseable{
     @Override
     public void close() throws IOException {
         if (output != null) {
+            writeByte <<= 8 - byteSize;
+            output.write(writeByte);
+            writeByte = 0;
+            byteSize = 0;
             output.close();
             output = null;
         }
