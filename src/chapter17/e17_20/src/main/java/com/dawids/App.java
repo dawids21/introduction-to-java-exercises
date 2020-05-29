@@ -46,6 +46,7 @@ public class App extends Application {
                         readFile.append(readByte);
                     }
                     textArea.setText(readFile.toString());
+                    System.out.println("Read complete");
                 } catch (FileNotFoundException e) {
                     textArea.setText("File not found");
                 } catch (IOException e) {
@@ -65,6 +66,7 @@ public class App extends Application {
             try (var outputStream = new BitOutputStream(new BufferedOutputStream(new FileOutputStream(
                     chooseFileTextField.getText())))) {
                 outputStream.writeBit(textArea.getText());
+                System.out.println("Write complete");
             } catch (FileNotFoundException e) {
                 textArea.setText("File not found");
             } catch (IOException e) {
