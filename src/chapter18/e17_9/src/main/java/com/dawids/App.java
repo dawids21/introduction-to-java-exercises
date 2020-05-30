@@ -90,6 +90,25 @@ public class App extends Application {
         }
     }
 
+    private enum Buttons {
+        ADD("Add"),
+        FIRST("First"),
+        NEXT("Next"),
+        PREVIOUS("Previous"),
+        LAST("Last"),
+        UPDATE("Update");
+
+        private final String label;
+
+        Buttons(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
+    }
+
     public static void main(String[] args) {
         launch();
     }
