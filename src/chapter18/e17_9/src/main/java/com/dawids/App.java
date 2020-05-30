@@ -94,7 +94,7 @@ public class App extends Application {
         ADD("Add"),
         FIRST("First"),
         NEXT("Next"),
-        PREVIOUS("Previous"),
+        PREV("Previous"),
         LAST("Last"),
         UPDATE("Update");
 
