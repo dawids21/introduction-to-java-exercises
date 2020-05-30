@@ -21,6 +21,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         var labels = new HashMap<Fields, Label>();
+        //todo center labels vertically
         var textFields = new HashMap<Fields, TextField>();
         for (Fields field : Fields.values()) {
             labels.put(field, new Label(field.getLabel()));
@@ -53,7 +54,7 @@ public class App extends Application {
         hBoxes[3].setSpacing(5);
 
         vBox.getChildren().addAll(hBoxes);
-        vBox.setSpacing(10);
+        vBox.setSpacing(5);
         vBox.setPadding(new Insets(10));
 
         HBox.setHgrow(textFields.get(Fields.NAME), Priority.ALWAYS);
