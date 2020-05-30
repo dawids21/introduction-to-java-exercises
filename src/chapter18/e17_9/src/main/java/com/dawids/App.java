@@ -2,6 +2,7 @@ package com.dawids;
 
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -41,8 +42,10 @@ public class App extends Application {
 
         hBoxes[0] = new HBox(labels.get(Fields.NAME), textFields.get(Fields.NAME));
         hBoxes[0].setSpacing(5);
+        hBoxes[0].setAlignment(Pos.CENTER);
         hBoxes[1] = new HBox(labels.get(Fields.STREET), textFields.get(Fields.STREET));
         hBoxes[1].setSpacing(5);
+        hBoxes[1].setAlignment(Pos.CENTER);
         hBoxes[2] = new HBox(labels.get(Fields.CITY),
                              textFields.get(Fields.CITY),
                              labels.get(Fields.STATE),
@@ -50,8 +53,10 @@ public class App extends Application {
                              labels.get(Fields.ZIP),
                              textFields.get(Fields.ZIP));
         hBoxes[2].setSpacing(5);
+        hBoxes[2].setAlignment(Pos.CENTER);
         hBoxes[3] = new HBox();
         hBoxes[3].setSpacing(5);
+        hBoxes[3].setAlignment(Pos.CENTER);
 
         vBox.getChildren().addAll(hBoxes);
         vBox.setSpacing(5);
