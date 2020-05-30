@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -22,22 +23,16 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         var labels = new HashMap<Fields, Label>();
-        //todo center labels vertically
         var textFields = new HashMap<Fields, TextField>();
         for (Fields field : Fields.values()) {
             labels.put(field, new Label(field.getLabel()));
             textFields.put(field, new TextField());
         }
+        var buttons = new HashMap<Buttons, Button>();
+        for (Buttons button : Buttons.values()) {
+            buttons.put(button, new Button(button.getLabel()));
+        }
         var hBoxes = new HBox[4];
-        hBoxes[0] = new HBox(labels.get(Fields.NAME), textFields.get(Fields.NAME));
-        hBoxes[1] = new HBox(labels.get(Fields.STREET), textFields.get(Fields.STREET));
-        hBoxes[2] = new HBox(labels.get(Fields.CITY),
-                             textFields.get(Fields.CITY),
-                             labels.get(Fields.STATE),
-                             textFields.get(Fields.STATE),
-                             labels.get(Fields.ZIP),
-                             textFields.get(Fields.ZIP));
-        hBoxes[3] = new HBox();
         var vBox = new VBox();
 
         hBoxes[0] = new HBox(labels.get(Fields.NAME), textFields.get(Fields.NAME));
@@ -55,6 +50,13 @@ public class App extends Application {
         hBoxes[2].setSpacing(5);
         hBoxes[2].setAlignment(Pos.CENTER);
         hBoxes[3] = new HBox();
+        hBoxes[3].getChildren()
+                 .addAll(buttons.get(Buttons.ADD),
+                         buttons.get(Buttons.FIRST),
+                         buttons.get(Buttons.NEXT),
+                         buttons.get(Buttons.PREV),
+                         buttons.get(Buttons.LAST),
+                         buttons.get(Buttons.UPDATE));
         hBoxes[3].setSpacing(5);
         hBoxes[3].setAlignment(Pos.CENTER);
 
