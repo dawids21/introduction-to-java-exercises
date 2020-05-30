@@ -1,9 +1,16 @@
 package com.dawids;
 
 import javafx.application.Application;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
+import java.util.HashMap;
 
 
 /**
@@ -13,10 +20,68 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) {
-        var borderPane = new BorderPane();
-        var scene = new Scene(borderPane, 640, 480);
+        var labels = new HashMap<Fields, Label>();
+        var textFields = new HashMap<Fields, TextField>();
+        for (Fields field : Fields.values()) {
+            labels.put(field, new Label(field.getLabel()));
+            textFields.put(field, new TextField());
+        }
+        var hBoxes = new HBox[4];
+        hBoxes[0] = new HBox(labels.get(Fields.NAME), textFields.get(Fields.NAME));
+        hBoxes[1] = new HBox(labels.get(Fields.STREET), textFields.get(Fields.STREET));
+        hBoxes[2] = new HBox(labels.get(Fields.CITY),
+                             textFields.get(Fields.CITY),
+                             labels.get(Fields.STATE),
+                             textFields.get(Fields.STATE),
+                             labels.get(Fields.ZIP),
+                             textFields.get(Fields.ZIP));
+        hBoxes[3] = new HBox();
+        var vBox = new VBox();
+
+        hBoxes[0] = new HBox(labels.get(Fields.NAME), textFields.get(Fields.NAME));
+        hBoxes[0].setSpacing(5);
+        hBoxes[1] = new HBox(labels.get(Fields.STREET), textFields.get(Fields.STREET));
+        hBoxes[1].setSpacing(5);
+        hBoxes[2] = new HBox(labels.get(Fields.CITY),
+                             textFields.get(Fields.CITY),
+                             labels.get(Fields.STATE),
+                             textFields.get(Fields.STATE),
+                             labels.get(Fields.ZIP),
+                             textFields.get(Fields.ZIP));
+        hBoxes[2].setSpacing(5);
+        hBoxes[3] = new HBox();
+        hBoxes[3].setSpacing(5);
+
+        vBox.getChildren().addAll(hBoxes);
+        vBox.setSpacing(10);
+        vBox.setPadding(new Insets(10));
+
+        HBox.setHgrow(textFields.get(Fields.NAME), Priority.ALWAYS);
+        HBox.setHgrow(textFields.get(Fields.STREET), Priority.ALWAYS);
+        textFields.get(Fields.STATE).setPrefColumnCount(2);
+        textFields.get(Fields.ZIP).setPrefColumnCount(5);
+
+        var scene = new Scene(vBox);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private enum Fields {
+        NAME("Name"),
+        STREET("Street"),
+        CITY("City"),
+        STATE("State"),
+        ZIP("Zip");
+
+        private final String label;
+
+        Fields(String label) {
+            this.label = label;
+        }
+
+        public String getLabel() {
+            return label;
+        }
     }
 
     public static void main(String[] args) {
