@@ -25,12 +25,12 @@ public class App extends Application {
     private static final String FILE_NAME = "AddressBook.dat";
     private static final int PERSON_SIZE = 32 + 32 + 20 + 2 + 5;
 
+    private HashMap<Fields, TextField> textFields = new HashMap<>();
     private static long index = -1;
 
     @Override
     public void start(Stage stage) {
         var labels = new HashMap<Fields, Label>();
-        var textFields = new HashMap<Fields, TextField>();
         for (Fields field : Fields.values()) {
             labels.put(field, new Label(field.getLabel()));
             textFields.put(field, new TextField());
