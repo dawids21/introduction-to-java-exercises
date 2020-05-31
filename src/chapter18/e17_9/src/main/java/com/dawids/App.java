@@ -12,6 +12,8 @@ import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.HashMap;
 
 
@@ -19,6 +21,11 @@ import java.util.HashMap;
  * JavaFX App
  */
 public class App extends Application {
+
+    private static final String FILE_NAME = "AddressBook.dat";
+    private static final int PERSON_SIZE = 32 + 32 + 20 + 2 + 5;
+
+    private static long index = -1;
 
     @Override
     public void start(Stage stage) {
@@ -34,6 +41,35 @@ public class App extends Application {
         }
         var hBoxes = new HBox[4];
         var vBox = new VBox();
+
+        buttons.get(Buttons.ADD).setOnAction(event -> {
+            Person person = null;
+            try {
+                person = new Person(textFields.get(Fields.NAME).getText(),
+                                    textFields.get(Fields.STREET).getText(),
+                                    textFields.get(Fields.CITY).getText(),
+                                    textFields.get(Fields.STATE).getText(),
+                                    textFields.get(Fields.ZIP).getText());
+            } catch (IllegalArgumentException e) {
+                e.printStackTrace();
+            }
+            if (person != null) {
+                try (var outputFile = new RandomAccessFile(FILE_NAME, "rw")) {
+                    var appendIndex = (outputFile.length() > 0 ? outputFile.readLong() : 0L);
+                    index = appendIndex;
+                    outputFile.seek(0);
+                    outputFile.writeLong(appendIndex + 1);
+                    outputFile.seek(appendIndex * PERSON_SIZE + 8);
+                    outputFile.writeBytes(person.getName());
+                    outputFile.writeBytes(person.getStreet());
+                    outputFile.writeBytes(person.getCity());
+                    outputFile.writeBytes(person.getState());
+                    outputFile.writeBytes(person.getZip());
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         hBoxes[0] = new HBox(labels.get(Fields.NAME), textFields.get(Fields.NAME));
         hBoxes[0].setSpacing(5);
