@@ -63,7 +63,10 @@ public class App extends Application {
                 e.printStackTrace();
             }
         });
-        buttons.get(Buttons.FIRST).setOnAction(event -> readEntry(0));
+        buttons.get(Buttons.FIRST).setOnAction(event -> {
+            index = 0;
+            readEntry(0);
+        });
 
         hBoxes[0] = new HBox(labels.get(Fields.NAME), textFields.get(Fields.NAME));
         hBoxes[0].setSpacing(5);
@@ -144,7 +147,6 @@ public class App extends Application {
     private void readEntry(long index) {
         //todo what if file is too short
         try (var inputFile = new RandomAccessFile(FILE_NAME, "r")) {
-            App.index = index;
             inputFile.seek(index * PERSON_SIZE + 8);
             byte[] name = new byte[32];
             byte[] street = new byte[32];
