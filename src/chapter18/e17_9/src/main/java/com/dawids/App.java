@@ -63,6 +63,29 @@ public class App extends Application {
                 e.printStackTrace();
             }
         });
+        buttons.get(Buttons.FIRST).setOnAction(event -> {
+            try (var inputFile = new RandomAccessFile(FILE_NAME, "r")) {
+                index = 0;
+                inputFile.seek(8);
+                byte[] name = new byte[32];
+                byte[] street = new byte[32];
+                byte[] city = new byte[20];
+                byte[] state = new byte[2];
+                byte[] zip = new byte[5];
+                inputFile.read(name);
+                inputFile.read(street);
+                inputFile.read(city);
+                inputFile.read(state);
+                inputFile.read(zip);
+                textFields.get(Fields.NAME).setText(new String(name));
+                textFields.get(Fields.STREET).setText(new String(street));
+                textFields.get(Fields.CITY).setText(new String(city));
+                textFields.get(Fields.STATE).setText(new String(state));
+                textFields.get(Fields.ZIP).setText(new String(zip));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
         hBoxes[0] = new HBox(labels.get(Fields.NAME), textFields.get(Fields.NAME));
         hBoxes[0].setSpacing(5);
