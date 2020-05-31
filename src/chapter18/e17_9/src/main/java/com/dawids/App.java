@@ -43,31 +43,24 @@ public class App extends Application {
         var vBox = new VBox();
 
         buttons.get(Buttons.ADD).setOnAction(event -> {
-            Person person = null;
-            try {
-                person = new Person(textFields.get(Fields.NAME).getText(),
+            var person = new Person(textFields.get(Fields.NAME).getText(),
                                     textFields.get(Fields.STREET).getText(),
                                     textFields.get(Fields.CITY).getText(),
                                     textFields.get(Fields.STATE).getText(),
                                     textFields.get(Fields.ZIP).getText());
-            } catch (IllegalArgumentException e) {
+            try (var outputFile = new RandomAccessFile(FILE_NAME, "rw")) {
+                var appendIndex = (outputFile.length() > 0 ? outputFile.readLong() : 0L);
+                index = appendIndex;
+                outputFile.seek(0);
+                outputFile.writeLong(appendIndex + 1);
+                outputFile.seek(appendIndex * PERSON_SIZE + 8);
+                outputFile.writeBytes(person.getName());
+                outputFile.writeBytes(person.getStreet());
+                outputFile.writeBytes(person.getCity());
+                outputFile.writeBytes(person.getState());
+                outputFile.writeBytes(person.getZip());
+            } catch (IOException e) {
                 e.printStackTrace();
-            }
-            if (person != null) {
-                try (var outputFile = new RandomAccessFile(FILE_NAME, "rw")) {
-                    var appendIndex = (outputFile.length() > 0 ? outputFile.readLong() : 0L);
-                    index = appendIndex;
-                    outputFile.seek(0);
-                    outputFile.writeLong(appendIndex + 1);
-                    outputFile.seek(appendIndex * PERSON_SIZE + 8);
-                    outputFile.writeBytes(person.getName());
-                    outputFile.writeBytes(person.getStreet());
-                    outputFile.writeBytes(person.getCity());
-                    outputFile.writeBytes(person.getState());
-                    outputFile.writeBytes(person.getZip());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
             }
         });
 
