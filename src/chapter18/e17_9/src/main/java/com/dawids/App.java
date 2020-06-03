@@ -65,7 +65,7 @@ public class App extends Application {
         });
         buttons.get(Buttons.FIRST).setOnAction(event -> {
             index = 0;
-            readEntry(0);
+            readEntry(index);
         });
         buttons.get(Buttons.LAST).setOnAction(event -> {
             try (var inputFile = new RandomAccessFile(FILE_NAME, "r")) {
