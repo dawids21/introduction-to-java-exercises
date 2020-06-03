@@ -168,6 +168,7 @@ public class App extends Application {
         }
     }
 
+    //todo add function that fill fields from person class object
     public static void main(String[] args) {
         launch();
     }
