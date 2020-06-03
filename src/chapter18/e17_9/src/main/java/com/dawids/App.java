@@ -67,6 +67,15 @@ public class App extends Application {
             index = 0;
             readEntry(0);
         });
+        buttons.get(Buttons.LAST).setOnAction(event -> {
+            try (var inputFile = new RandomAccessFile(FILE_NAME, "r")) {
+                inputFile.seek(0);
+                index = inputFile.readLong() - 1;
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            readEntry(index);
+        });
 
         hBoxes[0] = new HBox(labels.get(Fields.NAME), textFields.get(Fields.NAME));
         hBoxes[0].setSpacing(5);
