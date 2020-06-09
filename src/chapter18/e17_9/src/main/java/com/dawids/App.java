@@ -68,6 +68,8 @@ public class App extends Application {
             Person person = readEntry(index);
             setTextFields(person);
         });
+        //todo button next
+        //todo button previous
         buttons.get(Buttons.LAST).setOnAction(event -> {
             try (var inputFile = new RandomAccessFile(FILE_NAME, "r")) {
                 inputFile.seek(0);
@@ -78,6 +80,7 @@ public class App extends Application {
             Person person = readEntry(index);
             setTextFields(person);
         });
+        //todo button update
 
         hBoxes[0] = new HBox(labels.get(Fields.NAME), textFields.get(Fields.NAME));
         hBoxes[0].setSpacing(5);
