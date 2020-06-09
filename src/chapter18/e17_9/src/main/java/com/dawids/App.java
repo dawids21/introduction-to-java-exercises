@@ -65,7 +65,8 @@ public class App extends Application {
         });
         buttons.get(Buttons.FIRST).setOnAction(event -> {
             index = 0;
-            readEntry(index);
+            Person person = readEntry(index);
+            setTextFields(person);
         });
         buttons.get(Buttons.LAST).setOnAction(event -> {
             try (var inputFile = new RandomAccessFile(FILE_NAME, "r")) {
@@ -74,7 +75,8 @@ public class App extends Application {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            readEntry(index);
+            Person person = readEntry(index);
+            setTextFields(person);
         });
 
         hBoxes[0] = new HBox(labels.get(Fields.NAME), textFields.get(Fields.NAME));
@@ -116,6 +118,14 @@ public class App extends Application {
         stage.show();
     }
 
+    private void setTextFields(Person person) {
+        textFields.get(Fields.NAME).setText(person.getName());
+        textFields.get(Fields.STREET).setText(person.getStreet());
+        textFields.get(Fields.CITY).setText(person.getCity());
+        textFields.get(Fields.STATE).setText(person.getState());
+        textFields.get(Fields.ZIP).setText(person.getZip());
+    }
+
     private enum Fields {
         NAME("Name"),
         STREET("Street"),
@@ -153,8 +163,9 @@ public class App extends Application {
         }
     }
 
-    private void readEntry(long index) {
+    private Person readEntry(long index) {
         //todo what if file is too short
+        Person person = null;
         try (var inputFile = new RandomAccessFile(FILE_NAME, "r")) {
             inputFile.seek(index * PERSON_SIZE + 8);
             byte[] name = new byte[32];
@@ -167,14 +178,15 @@ public class App extends Application {
             inputFile.read(city);
             inputFile.read(state);
             inputFile.read(zip);
-            textFields.get(Fields.NAME).setText(new String(name));
-            textFields.get(Fields.STREET).setText(new String(street));
-            textFields.get(Fields.CITY).setText(new String(city));
-            textFields.get(Fields.STATE).setText(new String(state));
-            textFields.get(Fields.ZIP).setText(new String(zip));
+            person = new Person(new String(name),
+                                new String(street),
+                                new String(city),
+                                new String(state),
+                                new String(zip));
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return person;
     }
 
     //todo add function that fill fields from person class object
