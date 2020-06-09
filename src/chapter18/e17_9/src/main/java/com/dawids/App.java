@@ -69,6 +69,15 @@ public class App extends Application {
             setTextFields(person);
         });
         //todo button next
+        buttons.get(Buttons.NEXT).setOnAction(event -> {
+            if (index < 0) {
+                index = 0;
+            } else {
+                index++;
+            }
+            Person person = readEntry(index);
+            setTextFields(person);
+        });
         //todo button previous
         buttons.get(Buttons.LAST).setOnAction(event -> {
             try (var inputFile = new RandomAccessFile(FILE_NAME, "r")) {
