@@ -25,7 +25,7 @@ public class App extends Application {
     private static final String FILE_NAME = "AddressBook.dat";
     private static final int PERSON_SIZE = 32 + 32 + 20 + 2 + 5;
 
-    private HashMap<Fields, TextField> textFields = new HashMap<>();
+    private final HashMap<Fields, TextField> textFields = new HashMap<>();
     private static long index = -1;
 
     @Override
