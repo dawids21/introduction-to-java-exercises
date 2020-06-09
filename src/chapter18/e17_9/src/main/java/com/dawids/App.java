@@ -138,6 +138,9 @@ public class App extends Application {
     }
 
     private void setTextFields(Person person) {
+        if (person == null) {
+            return;
+        }
         textFields.get(Fields.NAME).setText(person.getName());
         textFields.get(Fields.STREET).setText(person.getStreet());
         textFields.get(Fields.CITY).setText(person.getCity());
@@ -183,9 +186,13 @@ public class App extends Application {
     }
 
     private Person readEntry(long index) {
-        //todo what if file is too short
         Person person = null;
         try (var inputFile = new RandomAccessFile(FILE_NAME, "r")) {
+            inputFile.seek(0);
+            long maxIndex = inputFile.readLong() - 1;
+            if (maxIndex < index) {
+                throw new IllegalArgumentException("Index is too big");
+            }
             inputFile.seek(index * PERSON_SIZE + 8);
             byte[] name = new byte[32];
             byte[] street = new byte[32];
@@ -202,7 +209,7 @@ public class App extends Application {
                                 new String(city),
                                 new String(state),
                                 new String(zip));
-        } catch (IOException e) {
+        } catch (IllegalArgumentException | IOException e) {
             e.printStackTrace();
         }
         return person;
