@@ -87,8 +87,7 @@ public class App extends Application {
             setTextFields(person);
         });
         buttons.get(Buttons.LAST).setOnAction(event -> {
-            index = getAppendIndex();
-
+            index = getAppendIndex() - 1;
             Person person = readEntry(index);
             setTextFields(person);
         });
