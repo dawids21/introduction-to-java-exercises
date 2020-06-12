@@ -71,7 +71,7 @@ public class App extends Application {
         buttons.get(Buttons.NEXT).setOnAction(event -> {
             if (index < 0) {
                 index = 0;
-            } else {
+            } else if (index < getAppendIndex() - 1){
                 index++;
             }
             Person person = readEntry(index);
@@ -91,7 +91,6 @@ public class App extends Application {
             Person person = readEntry(index);
             setTextFields(person);
         });
-        //todo button update
         buttons.get(Buttons.UPDATE).setOnAction(event -> {
             var person = new Person(textFields.get(Fields.NAME).getText(),
                                     textFields.get(Fields.STREET).getText(),
