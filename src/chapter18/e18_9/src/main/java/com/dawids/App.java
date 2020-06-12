@@ -87,12 +87,8 @@ public class App extends Application {
             setTextFields(person);
         });
         buttons.get(Buttons.LAST).setOnAction(event -> {
-            try (var inputFile = new RandomAccessFile(FILE_NAME, "r")) {
-                inputFile.seek(0);
-                index = inputFile.readLong() - 1;
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            index = getAppendIndex();
+
             Person person = readEntry(index);
             setTextFields(person);
         });
@@ -135,6 +131,17 @@ public class App extends Application {
         var scene = new Scene(vBox);
         stage.setScene(scene);
         stage.show();
+    }
+
+    private long getAppendIndex() {
+        var appendIndex = 0L;
+        try (var inputFile = new RandomAccessFile(FILE_NAME, "r")) {
+            inputFile.seek(0);
+            appendIndex = inputFile.readLong();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return appendIndex;
     }
 
     private void setTextFields(Person person) {
