@@ -92,6 +92,14 @@ public class App extends Application {
             setTextFields(person);
         });
         //todo button update
+        buttons.get(Buttons.UPDATE).setOnAction(event -> {
+            var person = new Person(textFields.get(Fields.NAME).getText(),
+                                    textFields.get(Fields.STREET).getText(),
+                                    textFields.get(Fields.CITY).getText(),
+                                    textFields.get(Fields.STATE).getText(),
+                                    textFields.get(Fields.ZIP).getText());
+            updateEntry(person, index);
+        });
 
         hBoxes[0] = new HBox(labels.get(Fields.NAME), textFields.get(Fields.NAME));
         hBoxes[0].setSpacing(5);
@@ -141,6 +149,19 @@ public class App extends Application {
             e.printStackTrace();
         }
         return appendIndex;
+    }
+
+    private void updateEntry(Person person, long index) {
+        try (var outputFile = new RandomAccessFile(FILE_NAME, "rw")) {
+            outputFile.seek(index * PERSON_SIZE + 8);
+            outputFile.writeBytes(person.getName());
+            outputFile.writeBytes(person.getStreet());
+            outputFile.writeBytes(person.getCity());
+            outputFile.writeBytes(person.getState());
+            outputFile.writeBytes(person.getZip());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setTextFields(Person person) {
