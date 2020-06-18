@@ -1,6 +1,6 @@
 package dawids21;
 
-enum Directions {
+public enum Directions {
     UP,
     DOWN,
     RIGHT,
