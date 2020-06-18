@@ -1,15 +1,15 @@
 package dawids21;
 
-class Solver {
+public class Solver {
 
     private final Point head = new Point();
     private final Maze mazeLayout;
 
-    Solver() {
+    public Solver() {
         mazeLayout = new Maze();
     }
 
-    Solver(Maze mazeLayout) {
+    public Solver(Maze mazeLayout) {
         this.mazeLayout = mazeLayout;
     }
 }
