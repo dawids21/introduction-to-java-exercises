@@ -3,7 +3,7 @@ package dawids21;
 import javafx.geometry.Point2D;
 
 class Maze {
-    private TypesOfCells[][] layout = new TypesOfCells[8][8];
+    private final TypesOfCells[][] layout = new TypesOfCells[8][8];
 
     Maze() {
         for (int i = 0; i < layout.length; i++) {
