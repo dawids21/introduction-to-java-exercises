@@ -1,7 +1,5 @@
 package dawids21;
 
-import javafx.geometry.Point2D;
-
 class Maze {
     private final TypesOfCells[][] layout = new TypesOfCells[8][8];
 
@@ -13,12 +11,12 @@ class Maze {
         }
     }
 
-    void setCell(Point2D point, TypesOfCells type) {
-        layout[(int) point.getX()][(int) point.getY()] = type;
+    void setCell(Point point, TypesOfCells type) {
+        layout[point.getX()][point.getY()] = type;
     }
 
-    TypesOfCells getCell(Point2D point) {
-        return layout[(int) point.getX()][(int) point.getY()];
+    TypesOfCells getCell(Point point) {
+        return layout[point.getX()][point.getY()];
     }
 
     void clearPath() {
