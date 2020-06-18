@@ -20,4 +20,14 @@ class Maze {
     TypesOfCells getCell(Point2D point) {
         return layout[(int) point.getX()][(int) point.getY()];
     }
+
+    void clearPath() {
+        for (int i = 0; i < layout.length; i++) {
+            for (int j = 0; j < layout[0].length; j++) {
+                if (layout[i][j] == TypesOfCells.OCCUPIED) {
+                    layout[i][j] = TypesOfCells.FREE;
+                }
+            }
+        }
+    }
 }
