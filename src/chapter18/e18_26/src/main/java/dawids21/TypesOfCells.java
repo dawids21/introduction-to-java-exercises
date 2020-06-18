@@ -1,6 +1,6 @@
 package dawids21;
 
-enum TypesOfCells {
+public enum TypesOfCells {
     FREE,
     OCCUPIED,
     CROSSED
