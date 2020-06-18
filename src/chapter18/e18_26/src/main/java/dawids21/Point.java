@@ -1,11 +1,11 @@
 package dawids21;
 
-class Point {
+public class Point {
 
     private int x = 0;
     private int y = 0;
 
-    Point() {
+    public Point() {
 
     }
 
