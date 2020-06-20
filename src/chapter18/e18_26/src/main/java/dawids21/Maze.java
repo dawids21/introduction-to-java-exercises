@@ -44,4 +44,8 @@ public class Maze {
             }
         }
     }
+
+    public TypesOfCells[][] getMazeLayout() {
+        return mazeLayout;
+    }
 }
