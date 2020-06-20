@@ -35,6 +35,16 @@ public class Maze {
         mazeLayout[point.getX()][point.getY()] = TypesOfCells.OCCUPIED;
     }
 
+    public void setCellCrossed(Point point) {
+        if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
+            throw new IllegalArgumentException("X coordinate is out of bound");
+        }
+        if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
+            throw new IllegalArgumentException("Y coordinate is out of bound");
+        }
+        mazeLayout[point.getX()][point.getY()] = TypesOfCells.CROSSED;
+    }
+
     public boolean isCellFree(Point point) {
         if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
             throw new IllegalArgumentException("X coordinate is out of bound");
