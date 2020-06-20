@@ -1,15 +1,10 @@
 package dawids21;
 
+import java.util.LinkedList;
+
 public class Solver {
-
-    private final Point head = new Point();
-    private final Maze mazeLayout;
-
-    public Solver() {
-        mazeLayout = new Maze();
-    }
-
-    public Solver(Maze mazeLayout) {
-        this.mazeLayout = mazeLayout;
+    public static LinkedList<Directions> findPath(Maze mazeLayout) {
+        var path = new LinkedList<Directions>();
+        return path;
     }
 }
