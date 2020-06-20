@@ -37,6 +37,14 @@ class MazeSolverTest {
         }
 
         @Test
+        @DisplayName("Cell is not free after setting as crossed")
+        void testSetCellCrossed() {
+            var point = new Point(1, 1);
+            maze.setCellCrossed(point);
+            assertTrue(maze.isCellFree(point));
+        }
+
+        @Test
         @DisplayName("New Maze should have all cells free")
         void testInitMaze() {
             for (var i = 0; i < Maze.NUM_OF_COLUMNS; i++) {
