@@ -57,6 +57,7 @@ public class Maze {
 
     private enum TypesOfCells {
         FREE,
-        OCCUPIED
+        OCCUPIED,
+        CROSSED
     }
 }
