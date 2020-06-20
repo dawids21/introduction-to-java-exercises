@@ -40,7 +40,7 @@ class MazeSolverTest {
         void testSetCellCrossed() {
             var point = new Point(1, 1);
             maze.setCellCrossed(point);
-            assertTrue(maze.isCellFree(point));
+            assertFalse(maze.isCellFree(point));
         }
 
         @Test
