@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MazeSolverTest {
@@ -17,6 +16,14 @@ class MazeSolverTest {
         @BeforeEach
         void setUp() {
             maze = new Maze();
+        }
+
+        @Test
+        @DisplayName("Set cell inside maze")
+        void testSetCell() {
+            var point = new Point(1, 1);
+            maze.setCellOccupied(point);
+            assertTrue(maze.isCellOccupied(point));
         }
 
         @Test
