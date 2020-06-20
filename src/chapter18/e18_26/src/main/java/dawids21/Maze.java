@@ -15,24 +15,44 @@ public class Maze {
         }
     }
 
-    public void setCell(Point point, TypesOfCells type) {
+    public void setCellFree(Point point) {
         if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
             throw new IllegalArgumentException("X coordinate is out of bound");
         }
         if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
             throw new IllegalArgumentException("Y coordinate is out of bound");
         }
-        mazeLayout[point.getX()][point.getY()] = type;
+        mazeLayout[point.getX()][point.getY()] = TypesOfCells.FREE;
     }
 
-    public TypesOfCells getCell(Point point) {
+    public void setCellOccupied(Point point) {
         if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
             throw new IllegalArgumentException("X coordinate is out of bound");
         }
         if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
             throw new IllegalArgumentException("Y coordinate is out of bound");
         }
-        return mazeLayout[point.getX()][point.getY()];
+        mazeLayout[point.getX()][point.getY()] = TypesOfCells.OCCUPIED;
+    }
+
+    public boolean isCellFree(Point point) {
+        if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
+            throw new IllegalArgumentException("X coordinate is out of bound");
+        }
+        if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
+            throw new IllegalArgumentException("Y coordinate is out of bound");
+        }
+        return mazeLayout[point.getX()][point.getY()] == TypesOfCells.FREE;
+    }
+
+    public boolean isCellOccupied(Point point) {
+        if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
+            throw new IllegalArgumentException("X coordinate is out of bound");
+        }
+        if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
+            throw new IllegalArgumentException("Y coordinate is out of bound");
+        }
+        return mazeLayout[point.getX()][point.getY()] == TypesOfCells.OCCUPIED;
     }
 
     public void clearPath() {
@@ -47,5 +67,10 @@ public class Maze {
 
     public TypesOfCells[][] getMazeLayout() {
         return mazeLayout;
+    }
+
+    private enum TypesOfCells {
+        FREE,
+        OCCUPIED
     }
 }
