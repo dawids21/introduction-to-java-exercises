@@ -19,6 +19,7 @@ class MazeSolverTest {
         }
 
         @Test
+        @DisplayName("New Maze should have all cells free")
         void testInitMaze() {
             TypesOfCells[][] expected = new TypesOfCells[8][8];
             for (var i = 0; i < Maze.NUM_OF_COLUMNS; i++) {
