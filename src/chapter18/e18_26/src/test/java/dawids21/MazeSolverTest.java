@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class MazeSolverTest {
@@ -19,11 +20,12 @@ class MazeSolverTest {
         }
 
         @Test
-        @DisplayName("Set cell inside maze")
-        void testSetCell() {
+        @DisplayName("Cell is not free after setting as occupied")
+        void testSetCellOccupied() {
             var point = new Point(1, 1);
             maze.setCellOccupied(point);
-            assertTrue(maze.isCellOccupied(point));
+            assertFalse(maze.isCellFree(point));
+        }
         }
 
         @Test

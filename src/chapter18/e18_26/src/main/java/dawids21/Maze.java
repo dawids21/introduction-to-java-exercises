@@ -45,16 +45,6 @@ public class Maze {
         return mazeLayout[point.getX()][point.getY()] == TypesOfCells.FREE;
     }
 
-    public boolean isCellOccupied(Point point) {
-        if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
-            throw new IllegalArgumentException("X coordinate is out of bound");
-        }
-        if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
-            throw new IllegalArgumentException("Y coordinate is out of bound");
-        }
-        return mazeLayout[point.getX()][point.getY()] == TypesOfCells.OCCUPIED;
-    }
-
     public void clearPath() {
         for (int i = 0; i < NUM_OF_ROWS; i++) {
             for (int j = 0; j < NUM_OF_COLUMNS; j++) {
