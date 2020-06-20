@@ -65,10 +65,6 @@ public class Maze {
         }
     }
 
-    public TypesOfCells[][] getMazeLayout() {
-        return mazeLayout;
-    }
-
     private enum TypesOfCells {
         FREE,
         OCCUPIED
