@@ -1,6 +1,7 @@
 package dawids21;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +29,7 @@ class MazeSolverTest {
             TypesOfCells[][] actual = maze.getMazeLayout();
             for (var i = 0; i < Maze.NUM_OF_COLUMNS; i++) {
                 for (var j = 0; j < Maze.NUM_OF_ROWS; j++) {
-                    assertEquals(expected[i][j], actual[i][j], "Should be free");
+                    assertEquals(expected[i][j], actual[i][j]);
                 }
             }
         }
