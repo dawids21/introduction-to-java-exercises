@@ -11,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class MazeSolverTest {
 
     @Nested
+    @DisplayName("Test Maze class")
     class MazeTest {
         Maze maze;
 
