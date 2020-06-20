@@ -26,6 +26,13 @@ class MazeSolverTest {
             maze.setCellOccupied(point);
             assertFalse(maze.isCellFree(point));
         }
+
+        @Test
+        @DisplayName("Cell is free after setting as free")
+        void testSetCellFree() {
+            var point = new Point(1, 1);
+            maze.setCellFree(point);
+            assertTrue(maze.isCellFree(point));
         }
 
         @Test
