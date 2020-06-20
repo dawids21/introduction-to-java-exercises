@@ -5,8 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MazeSolverTest {
 
@@ -42,6 +41,17 @@ class MazeSolverTest {
             var point = new Point(1, 1);
             maze.setCellCrossed(point);
             assertTrue(maze.isCellFree(point));
+        }
+
+        @Test
+        void testClearPath() {
+            var occupiedPoint = new Point(1, 1);
+            var crossedPoint = new Point(1, 2);
+            maze.setCellOccupied(occupiedPoint);
+            maze.setCellCrossed(crossedPoint);
+            maze.clearPath();
+            assertAll(() -> assertTrue(maze.isCellFree(occupiedPoint)),
+                      () -> assertFalse(maze.isCellFree(crossedPoint)));
         }
 
         @Test
