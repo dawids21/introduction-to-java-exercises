@@ -16,6 +16,12 @@ public class Maze {
     }
 
     public void setCell(Point point, TypesOfCells type) {
+        if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
+            throw new IllegalArgumentException("X coordinate is out of bound");
+        }
+        if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
+            throw new IllegalArgumentException("Y coordinate is out of bound");
+        }
         layout[point.getX()][point.getY()] = type;
     }
 
