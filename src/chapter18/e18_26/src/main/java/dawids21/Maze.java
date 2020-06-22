@@ -19,31 +19,25 @@ public class Maze {
     }
 
     public void setCellFree(Point point) {
-        if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
-            throw new IllegalArgumentException("X coordinate is out of bound");
-        }
-        if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
-            throw new IllegalArgumentException("Y coordinate is out of bound");
-        }
-        mazeLayout[point.getX()][point.getY()] = TypesOfCells.FREE;
+        setCell(point, TypesOfCells.FREE);
     }
 
     public void setCellOccupied(Point point) {
-        if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
-            throw new IllegalArgumentException("X coordinate is out of bound");
-        }
-        if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
-            throw new IllegalArgumentException("Y coordinate is out of bound");
-        }
-        mazeLayout[point.getX()][point.getY()] = TypesOfCells.OCCUPIED;
+        setCell(point, TypesOfCells.OCCUPIED);
     }
 
     public void setCellCrossed(Point point) {
-        if (point.equals(ENTRY)) {
-            throw new IllegalArgumentException("Cant cross entry point");
-        }
-        if (point.equals(EXIT)) {
-            throw new IllegalArgumentException("Cant cross exit point");
+        setCell(point, TypesOfCells.CROSSED);
+    }
+
+    private void setCell(Point point, TypesOfCells type) {
+        if (type == TypesOfCells.CROSSED) {
+            if (point.equals(ENTRY)) {
+                throw new IllegalArgumentException("Cant cross entry point");
+            }
+            if (point.equals(EXIT)) {
+                throw new IllegalArgumentException("Cant cross exit point");
+            }
         }
         if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
             throw new IllegalArgumentException("X coordinate is out of bound");
@@ -51,7 +45,7 @@ public class Maze {
         if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
             throw new IllegalArgumentException("Y coordinate is out of bound");
         }
-        mazeLayout[point.getX()][point.getY()] = TypesOfCells.CROSSED;
+        mazeLayout[point.getX()][point.getY()] = type;
     }
 
     public boolean isCellFree(Point point) {
