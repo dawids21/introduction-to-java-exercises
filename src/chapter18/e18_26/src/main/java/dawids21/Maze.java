@@ -31,6 +31,9 @@ public class Maze {
     }
 
     private void setCell(Point point, TypesOfCells type) {
+        if (point == null) {
+            throw new NullPointerException("Cell is null");
+        }
         if (type == TypesOfCells.CROSSED) {
             if (point.equals(ENTRY)) {
                 throw new IllegalArgumentException("Cant cross entry point");
