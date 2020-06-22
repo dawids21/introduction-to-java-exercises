@@ -42,11 +42,8 @@ public class Maze {
                 throw new IllegalArgumentException("Cant cross exit point");
             }
         }
-        if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
-            throw new IllegalArgumentException("X coordinate is out of bound");
-        }
-        if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
-            throw new IllegalArgumentException("Y coordinate is out of bound");
+        if (!isPointInsideMaze(point)) {
+            throw new IllegalArgumentException("Point is not inside maze");
         }
         mazeLayout[point.getX()][point.getY()] = type;
     }
@@ -55,11 +52,8 @@ public class Maze {
         if (point == null) {
             throw new NullPointerException();
         }
-        if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
-            throw new IllegalArgumentException("X coordinate is out of bound");
-        }
-        if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
-            throw new IllegalArgumentException("Y coordinate is out of bound");
+        if (!isPointInsideMaze(point)) {
+            throw new IllegalArgumentException("Point is not inside maze");
         }
         return mazeLayout[point.getX()][point.getY()] == TypesOfCells.FREE;
     }
@@ -68,11 +62,8 @@ public class Maze {
         if (point == null) {
             throw new NullPointerException();
         }
-        if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
-            throw new IllegalArgumentException("X coordinate is out of bound");
-        }
-        if (point.getY() < 0 || point.getY() >= NUM_OF_ROWS) {
-            throw new IllegalArgumentException("Y coordinate is out of bound");
+        if (!isPointInsideMaze(point)) {
+            throw new IllegalArgumentException("Point is not inside maze");
         }
         return mazeLayout[point.getX()][point.getY()] == TypesOfCells.CROSSED;
     }
@@ -85,6 +76,10 @@ public class Maze {
                 }
             }
         }
+    }
+
+    public boolean isPointInsideMaze(Point point) {
+        return point.getX() >= 0 && point.getX() < NUM_OF_COLUMNS && point.getY() >= 0 && point.getY() < NUM_OF_ROWS;
     }
 
     private enum TypesOfCells {
