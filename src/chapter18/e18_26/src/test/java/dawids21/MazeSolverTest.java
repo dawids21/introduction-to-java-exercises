@@ -102,4 +102,42 @@ class MazeSolverTest {
             );
         }
     }
+
+    @Test
+    @DisplayName("Should return return path from ENTRY to EXIT")
+    void testSolver() {
+        var maze = new Maze();
+        final Point[] crossedPoints = {
+                new Point(1, 1),
+                new Point(5, 1),
+                new Point(3, 2),
+                new Point(6, 3),
+                new Point(2, 4),
+                new Point(4, 4),
+                new Point(4, 6),
+                new Point(1, 7)
+        };
+        for (Point point : crossedPoints) {
+            maze.setCellCrossed(point);
+        }
+        var head = new Point(Maze.ENTRY.getX(), Maze.ENTRY.getY());
+        var path = Solver.findPath(maze);
+        for (Directions move : path) {
+            switch (move) {
+                case UP:
+                    head.moveUp();
+                    break;
+                case DOWN:
+                    head.moveDown();
+                    break;
+                case LEFT:
+                    head.moveLeft();
+                    break;
+                case RIGHT:
+                    head.moveRight();
+                    break;
+            }
+        }
+        assertEquals(Maze.EXIT, head);
+    }
 }
