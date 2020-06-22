@@ -98,7 +98,9 @@ class MazeSolverTest {
         void testNullCell() {
             assertAll(() -> assertThrows(NullPointerException.class, () -> maze.setCellCrossed(null)),
                       () -> assertThrows(NullPointerException.class, () -> maze.setCellOccupied(null)),
-                      () -> assertThrows(NullPointerException.class, () -> maze.setCellFree(null))
+                      () -> assertThrows(NullPointerException.class, () -> maze.setCellFree(null)),
+                      () -> assertThrows(NullPointerException.class, () -> maze.isCellFree(null)),
+                      () -> assertThrows(NullPointerException.class, () -> maze.isCellCrossed(null))
             );
         }
     }
