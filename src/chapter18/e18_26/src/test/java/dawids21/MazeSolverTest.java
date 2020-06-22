@@ -94,5 +94,12 @@ class MazeSolverTest {
             assertThrows(IllegalArgumentException.class, () -> maze.setCellCrossed(new Point(7, 7)));
         }
 
+        @Test
+        void testNullCell() {
+            assertAll(() -> assertThrows(NullPointerException.class, () -> maze.setCellCrossed(null)),
+                      () -> assertThrows(NullPointerException.class, () -> maze.setCellOccupied(null)),
+                      () -> assertThrows(NullPointerException.class, () -> maze.setCellFree(null))
+            );
+        }
     }
 }
