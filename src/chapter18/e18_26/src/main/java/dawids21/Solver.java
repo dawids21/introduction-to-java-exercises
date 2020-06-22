@@ -1,11 +1,39 @@
 package dawids21;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Solver {
     public static LinkedList<Directions> findPath(Maze mazeLayout) {
         var path = new LinkedList<Directions>();
         return path;
+    }
+
+    private static ArrayList<Directions> checkNeighbours(Point point, Maze mazeLayout) {
+        var possibleMoves = new ArrayList<Directions>();
+        for (Directions direction : Directions.values()) {
+            Point currentNeighbour = null;
+            switch (direction) {
+                case UP:
+                    currentNeighbour = new Point(point.getX(), point.getY() - 1);
+                    break;
+                case DOWN:
+                    currentNeighbour = new Point(point.getX(), point.getY() + 1);
+                    break;
+                case RIGHT:
+                    currentNeighbour = new Point(point.getX() + 1, point.getY());
+                    break;
+                case LEFT:
+                    currentNeighbour = new Point(point.getX() - 1, point.getY());
+                    break;
+            }
+            if (mazeLayout.isPointInsideMaze(point) && mazeLayout.isCellFree(currentNeighbour) && checkAllFourSquares(
+                    point,
+                    mazeLayout)) {
+                possibleMoves.add(direction);
+            }
+        }
+        return possibleMoves;
     }
 
     private static boolean checkAllFourSquares(Point point, Maze mazeLayout) {
