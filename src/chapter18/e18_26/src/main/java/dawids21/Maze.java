@@ -39,6 +39,12 @@ public class Maze {
     }
 
     public void setCellCrossed(Point point) {
+        if (point.equals(ENTRY)) {
+            throw new IllegalArgumentException("Cant cross entry point");
+        }
+        if (point.equals(EXIT)) {
+            throw new IllegalArgumentException("Cant cross exit point");
+        }
         if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
             throw new IllegalArgumentException("X coordinate is out of bound");
         }
