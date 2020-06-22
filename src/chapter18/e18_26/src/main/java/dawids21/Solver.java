@@ -28,7 +28,7 @@ public class Solver {
         try {
             if (mazeLayout.isCellCrossed(point0) || mazeLayout.isCellCrossed(point1) || mazeLayout.isCellCrossed(point2)) {
                 return true;
-            } else if (mazeLayout.isCellFree(point0) || mazeLayout.isCellFree(point1) || mazeLayout.isCellFree(point2)) {
+            } else if (!mazeLayout.isCellFree(point0) && !mazeLayout.isCellFree(point1) && !mazeLayout.isCellFree(point2)) {
                 return false;
             }
         } catch (IllegalArgumentException e) {
