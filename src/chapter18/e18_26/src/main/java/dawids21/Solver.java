@@ -25,15 +25,14 @@ public class Solver {
     }
 
     private static boolean checkFourSquare(Point point0, Point point1, Point point2, Maze mazeLayout) {
-        try {
-            if (mazeLayout.isCellCrossed(point0) || mazeLayout.isCellCrossed(point1) || mazeLayout.isCellCrossed(point2)) {
-                return true;
-            } else if (!mazeLayout.isCellFree(point0) && !mazeLayout.isCellFree(point1) && !mazeLayout.isCellFree(point2)) {
-                return false;
-            }
-        } catch (IllegalArgumentException e) {
+        if (!mazeLayout.isPointInsideMaze(point0) || !mazeLayout.isPointInsideMaze(point1) || !mazeLayout.isPointInsideMaze(
+                point2)) {
             return false;
+        } else if (mazeLayout.isCellCrossed(point0) || mazeLayout.isCellCrossed(point1) || mazeLayout.isCellCrossed(
+                point2)) {
+            return true;
+        } else {
+            return mazeLayout.isCellFree(point0) || mazeLayout.isCellFree(point1) || mazeLayout.isCellFree(point2);
         }
-        return true;
     }
 }
