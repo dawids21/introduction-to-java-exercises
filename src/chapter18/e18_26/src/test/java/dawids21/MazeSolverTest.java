@@ -63,5 +63,36 @@ class MazeSolverTest {
                 }
             }
         }
+
+        @Test
+        @DisplayName("Should not be possible to set cell outside the maze")
+        void testSetCellOutOfBound() {
+            assertAll(() -> assertThrows(IllegalArgumentException.class, () -> maze.setCellOccupied(new Point(-1, 2))),
+                      () -> assertThrows(IllegalArgumentException.class, () -> maze.setCellOccupied(new Point(9, 2))),
+                      () -> assertThrows(IllegalArgumentException.class, () -> maze.setCellOccupied(new Point(1, -2))),
+                      () -> assertThrows(IllegalArgumentException.class, () -> maze.setCellOccupied(new Point(1, 9))),
+                      () -> assertThrows(IllegalArgumentException.class, () -> maze.setCellCrossed(new Point(-1, 2))),
+                      () -> assertThrows(IllegalArgumentException.class, () -> maze.setCellCrossed(new Point(9, 2))),
+                      () -> assertThrows(IllegalArgumentException.class, () -> maze.setCellCrossed(new Point(1, -2))),
+                      () -> assertThrows(IllegalArgumentException.class, () -> maze.setCellCrossed(new Point(1, 9))),
+                      () -> assertThrows(IllegalArgumentException.class, () -> maze.setCellFree(new Point(-1, 2))),
+                      () -> assertThrows(IllegalArgumentException.class, () -> maze.setCellFree(new Point(9, 2))),
+                      () -> assertThrows(IllegalArgumentException.class, () -> maze.setCellFree(new Point(1, -2))),
+                      () -> assertThrows(IllegalArgumentException.class, () -> maze.setCellFree(new Point(1, 9)))
+            );
+        }
+
+        @Test
+        @DisplayName("Should not be possible to cross entry point")
+        void testSetEntryPoint() {
+            assertThrows(IllegalArgumentException.class, () -> maze.setCellCrossed(new Point(0, 0)));
+        }
+
+        @Test
+        @DisplayName("Should not be possible to cross exit point")
+        void testSetExitPoint() {
+            assertThrows(IllegalArgumentException.class, () -> maze.setCellCrossed(new Point(7, 7)));
+        }
+
     }
 }
