@@ -41,4 +41,18 @@ public class Point {
     public int hashCode() {
         return Objects.hash(getX(), getY());
     }
+
+    public void moveUp() {
+        y--;
+    }
+
+    public void moveDown() {
+        y++;
+    }
+    public void moveLeft() {
+        x--;
+    }
+    public void moveRight() {
+        x++;
+    }
 }
