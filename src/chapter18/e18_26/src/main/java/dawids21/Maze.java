@@ -5,6 +5,9 @@ public class Maze {
     public static final int NUM_OF_ROWS = 8;
     public static final int NUM_OF_COLUMNS = 8;
 
+    private static final Point ENTRY = new Point(0, 0);
+    private static final Point EXIT = new Point(7, 7);
+
     private final TypesOfCells[][] mazeLayout = new TypesOfCells[NUM_OF_ROWS][NUM_OF_COLUMNS];
 
     public Maze() {
