@@ -52,6 +52,9 @@ public class Maze {
     }
 
     public boolean isCellFree(Point point) {
+        if (point == null) {
+            throw new NullPointerException();
+        }
         if (point.getX() < 0 || point.getX() >= NUM_OF_COLUMNS) {
             throw new IllegalArgumentException("X coordinate is out of bound");
         }
