@@ -1,10 +1,12 @@
 package dawids21;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 public class Solver {
     public static LinkedList<Directions> findPath(Maze mazeLayout) {
+        if (mazeLayout == null) {
+            throw new NullPointerException();
+        }
         var path = new LinkedList<Directions>();
         var head = new Point(Maze.ENTRY.getX(), Maze.ENTRY.getY());
         searchForPath(head, path, mazeLayout);
