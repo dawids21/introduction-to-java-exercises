@@ -9,7 +9,10 @@ public class Solver {
         }
         var path = new LinkedList<Directions>();
         var head = new Point(Maze.ENTRY.getX(), Maze.ENTRY.getY());
-        searchForPath(head, path, mazeLayout);
+        if (!searchForPath(head, path, mazeLayout)) {
+            System.out.println("No path was find");
+            path = null;
+        };
         return path;
     }
 
