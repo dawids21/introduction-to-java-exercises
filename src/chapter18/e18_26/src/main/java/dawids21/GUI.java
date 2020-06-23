@@ -46,6 +46,20 @@ public class GUI {
                 grid[i][j].widthProperty().bind(mainPane.widthProperty().divide(Maze.NUM_OF_COLUMNS).subtract(10));
                 grid[i][j].setFill(Color.WHITE);
                 grid[i][j].setStroke(Color.BLACK);
+                int rectangleX = i;
+                int rectangleY = j;
+                grid[i][j].setOnMouseClicked(mouseEvent -> {
+                    switch (mouseEvent.getButton()) {
+                        case PRIMARY:
+                            App.getMaze().setCellCrossed(new Point(rectangleX, rectangleY));
+                            ((Rectangle) mouseEvent.getSource()).setFill(Color.RED);
+                            break;
+                        case SECONDARY:
+                            App.getMaze().setCellFree(new Point(rectangleX, rectangleY));
+                            ((Rectangle) mouseEvent.getSource()).setFill(Color.WHITE);
+                            break;
+                    }
+                });
                 gridPane.add(grid[i][j], i, j);
             }
         }
