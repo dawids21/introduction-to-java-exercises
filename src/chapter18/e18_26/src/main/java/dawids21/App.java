@@ -8,6 +8,7 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
+    private static final Maze maze = new Maze();
 
     @Override
     public void start(Stage stage) {
@@ -19,4 +20,7 @@ public class App extends Application {
         launch();
     }
 
+    public static Maze getMaze() {
+        return maze;
+    }
 }
