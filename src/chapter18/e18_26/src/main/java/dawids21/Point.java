@@ -42,6 +42,14 @@ public class Point {
         return Objects.hash(getX(), getY());
     }
 
+    @Override
+    public String toString() {
+        return "Point{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
+
     public void moveUp() {
         y--;
     }
@@ -49,9 +57,11 @@ public class Point {
     public void moveDown() {
         y++;
     }
+
     public void moveLeft() {
         x--;
     }
+
     public void moveRight() {
         x++;
     }
