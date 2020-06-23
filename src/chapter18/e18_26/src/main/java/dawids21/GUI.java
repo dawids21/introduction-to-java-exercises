@@ -38,7 +38,15 @@ public class GUI {
         var gridPane = new GridPane();
         var mainPane = new BorderPane();
 
-        clearButton.setOnAction(event -> App.getMaze().clearPath());
+        findButton.setOnAction(event -> {
+            Solver.findPath(App.getMaze());
+            drawMaze(grid, App.getMaze());
+        });
+
+        clearButton.setOnAction(event -> {
+            App.getMaze().clearPath();
+            drawMaze(grid, App.getMaze());
+        });
 
         hBoxButton.setAlignment(Pos.CENTER);
         hBoxButton.setSpacing(5);
