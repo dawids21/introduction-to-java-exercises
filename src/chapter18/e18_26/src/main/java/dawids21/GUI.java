@@ -12,6 +12,11 @@ import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 public class GUI {
+
+    private static final Color freeColor = Color.WHITE;
+    private static final Color crossedColor = Color.RED;
+    private static final Color occupiedColor = Color.BLUE;
+
     private final Stage primaryStage;
 
     public GUI() {
@@ -52,11 +57,11 @@ public class GUI {
                     switch (mouseEvent.getButton()) {
                         case PRIMARY:
                             App.getMaze().setCellCrossed(new Point(rectangleX, rectangleY));
-                            ((Rectangle) mouseEvent.getSource()).setFill(Color.RED);
+                            ((Rectangle) mouseEvent.getSource()).setFill(crossedColor);
                             break;
                         case SECONDARY:
                             App.getMaze().setCellFree(new Point(rectangleX, rectangleY));
-                            ((Rectangle) mouseEvent.getSource()).setFill(Color.WHITE);
+                            ((Rectangle) mouseEvent.getSource()).setFill(freeColor);
                             break;
                     }
                 });
@@ -79,9 +84,9 @@ public class GUI {
                 var point = new Point(i, j);
                 if (!mazeLayout.isCellCrossed(point)) {
                     if (mazeLayout.isCellFree(point)) {
-                        gridPane[i][j].setFill(Color.WHITE);
+                        gridPane[i][j].setFill(freeColor);
                     } else {
-                        gridPane[i][j].setFill(Color.RED);
+                        gridPane[i][j].setFill(occupiedColor);
                     }
                 }
             }
