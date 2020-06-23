@@ -29,6 +29,7 @@ public class GUI {
         var findButton = new Button("Find path");
         var clearButton = new Button("Clear path");
         var hBoxButton = new HBox(findButton, clearButton);
+        var grid = new Rectangle[Maze.NUM_OF_ROWS][Maze.NUM_OF_COLUMNS];
         var gridPane = new GridPane();
         var mainPane = new BorderPane();
 
@@ -38,12 +39,12 @@ public class GUI {
         gridPane.setAlignment(Pos.CENTER);
         for (var i = 0; i < Maze.NUM_OF_ROWS; i++) {
             for (var j = 0; j < Maze.NUM_OF_COLUMNS; j++) {
-                var rectangle = new Rectangle();
-                rectangle.heightProperty().bind(mainPane.heightProperty().divide(Maze.NUM_OF_ROWS).subtract(10));
-                rectangle.widthProperty().bind(mainPane.widthProperty().divide(Maze.NUM_OF_COLUMNS).subtract(10));
-                rectangle.setFill(null);
-                rectangle.setStroke(Color.BLACK);
-                gridPane.add(rectangle, i, j);
+                grid[i][j] = new Rectangle();
+                grid[i][j].heightProperty().bind(mainPane.heightProperty().divide(Maze.NUM_OF_ROWS).subtract(10));
+                grid[i][j].widthProperty().bind(mainPane.widthProperty().divide(Maze.NUM_OF_COLUMNS).subtract(10));
+                grid[i][j].setFill(Color.WHITE);
+                grid[i][j].setStroke(Color.BLACK);
+                gridPane.add(grid[i][j], i, j);
             }
         }
 
@@ -54,5 +55,20 @@ public class GUI {
         var scene = new Scene(mainPane, 400, 400);
         primaryStage.setScene(scene);
         primaryStage.show();
+    }
+
+    private void drawMaze(Rectangle[][] gridPane, Maze mazeLayout) {
+        for (var i = 0; i < Maze.NUM_OF_ROWS; i++) {
+            for (var j = 0; j < Maze.NUM_OF_COLUMNS; j++) {
+                var point = new Point(i, j);
+                if (!mazeLayout.isCellCrossed(point)) {
+                    if (mazeLayout.isCellFree(point)) {
+                        gridPane[i][j].setFill(Color.WHITE);
+                    } else {
+                        gridPane[i][j].setFill(Color.RED);
+                    }
+                }
+            }
+        }
     }
 }
