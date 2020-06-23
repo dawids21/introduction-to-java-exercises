@@ -6,7 +6,44 @@ import java.util.LinkedList;
 public class Solver {
     public static LinkedList<Directions> findPath(Maze mazeLayout) {
         var path = new LinkedList<Directions>();
+        var head = new Point(Maze.ENTRY.getX(), Maze.ENTRY.getY());
+        searchForPath(head, path, mazeLayout);
         return path;
+    }
+
+    private static boolean searchForPath(Point head, LinkedList<Directions> path, Maze mazeLayout) {
+        mazeLayout.setCellOccupied(head);
+        if (head.equals(Maze.EXIT)) {
+            return true;
+        }
+        for (Directions direction : Directions.values()) {
+            Point nextMove = null;
+            switch (direction) {
+                case UP:
+                    nextMove = new Point(head.getX(), head.getY() - 1);
+                    break;
+                case DOWN:
+                    nextMove = new Point(head.getX(), head.getY() + 1);
+                    break;
+                case RIGHT:
+                    nextMove = new Point(head.getX() + 1, head.getY());
+                    break;
+                case LEFT:
+                    nextMove = new Point(head.getX() - 1, head.getY());
+                    break;
+            }
+            if (mazeLayout.isPointInsideMaze(nextMove) && mazeLayout.isCellFree(nextMove) && checkAllFourSquares(
+                    nextMove,
+                    mazeLayout) && searchForPath(
+                    nextMove,
+                    path,
+                    mazeLayout)) {
+                path.addFirst(direction);
+                return true;
+            }
+        }
+        mazeLayout.setCellFree(head);
+        return false;
     }
 
     private static ArrayList<Directions> checkNeighbours(Point point, Maze mazeLayout) {
@@ -55,7 +92,7 @@ public class Solver {
     private static boolean checkFourSquare(Point point0, Point point1, Point point2, Maze mazeLayout) {
         if (!mazeLayout.isPointInsideMaze(point0) || !mazeLayout.isPointInsideMaze(point1) || !mazeLayout.isPointInsideMaze(
                 point2)) {
-            return false;
+            return true;
         } else if (mazeLayout.isCellCrossed(point0) || mazeLayout.isCellCrossed(point1) || mazeLayout.isCellCrossed(
                 point2)) {
             return true;
