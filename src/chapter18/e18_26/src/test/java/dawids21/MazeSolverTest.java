@@ -107,7 +107,7 @@ class MazeSolverTest {
 
     @Test
     @DisplayName("Should return return path from ENTRY to EXIT")
-    void testSolver() {
+    void testSolverSimpleMaze() {
         var maze = new Maze();
         final Point[] crossedPoints = {
                 new Point(1, 1),
@@ -118,6 +118,64 @@ class MazeSolverTest {
                 new Point(4, 4),
                 new Point(4, 6),
                 new Point(1, 7)
+        };
+        for (Point point : crossedPoints) {
+            maze.setCellCrossed(point);
+        }
+        var head = new Point(Maze.ENTRY.getX(), Maze.ENTRY.getY());
+        var path = Solver.findPath(maze);
+        for (Directions move : path) {
+            switch (move) {
+                case UP:
+                    head.moveUp();
+                    break;
+                case DOWN:
+                    head.moveDown();
+                    break;
+                case LEFT:
+                    head.moveLeft();
+                    break;
+                case RIGHT:
+                    head.moveRight();
+                    break;
+            }
+        }
+        assertEquals(Maze.EXIT, head);
+    }
+
+    @Test
+    void testSolverComplicatedMaze() {
+        var maze = new Maze();
+        final Point[] crossedPoints = {
+                new Point(3, 0),
+                new Point(5, 0),
+                new Point(6, 0),
+                new Point(1, 1),
+                new Point(2, 1),
+                new Point(3, 1),
+                new Point(5, 1),
+                new Point(6, 1),
+                new Point(1, 2),
+                new Point(3, 3),
+                new Point(4, 3),
+                new Point(6, 3),
+                new Point(1, 4),
+                new Point(2, 4),
+                new Point(3, 4),
+                new Point(4, 4),
+                new Point(6, 4),
+                new Point(1, 5),
+                new Point(2, 5),
+                new Point(3, 5),
+                new Point(4, 5),
+                new Point(6, 5),
+                new Point(0, 6),
+                new Point(1, 6),
+                new Point(2, 6),
+                new Point(6, 6),
+                new Point(4, 7),
+                new Point(5, 7),
+                new Point(6, 7)
         };
         for (Point point : crossedPoints) {
             maze.setCellCrossed(point);
