@@ -9,16 +9,20 @@ public class App {
         var mapOfOccurrences = new HashMap<Integer, Integer>();
 
         System.out.print("Enter the numbers: ");
-        String[] numbers = input.nextLine().split("\\s+");
+        String[] numbers = input.nextLine()
+                                .split("\\s+");
         input.close();
 
-        Arrays.stream(numbers).filter(App::isInteger).map(Integer::parseInt).forEach(integer -> {
-            if (mapOfOccurrences.containsKey(integer)) {
-                mapOfOccurrences.put(integer, mapOfOccurrences.get(integer) + 1);
-            } else {
-                mapOfOccurrences.put(integer, 1);
-            }
-        });
+        Arrays.stream(numbers)
+              .filter(App::isInteger)
+              .map(Integer::parseInt)
+              .forEach(integer -> {
+                  if (mapOfOccurrences.containsKey(integer)) {
+                      mapOfOccurrences.put(integer, mapOfOccurrences.get(integer) + 1);
+                  } else {
+                      mapOfOccurrences.put(integer, 1);
+                  }
+              });
 
         int maxOccurrences = Collections.max(mapOfOccurrences.values());
         mapOfOccurrences.entrySet()
