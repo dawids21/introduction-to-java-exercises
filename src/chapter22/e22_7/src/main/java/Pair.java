@@ -1,4 +1,4 @@
-public class Pair {
+public class Pair implements Comparable<Pair> {
 
     private final Point2D p1;
     private final Point2D p2;
@@ -19,5 +19,10 @@ public class Pair {
     public double getDistance() {
         return Math.sqrt(Math.pow(getP1().getX() - getP2().getX(), 2) +
                          Math.pow(getP1().getY() - getP2().getY(), 2));
+    }
+
+    @Override
+    public int compareTo(Pair pair) {
+        return Double.compare(getDistance(), pair.getDistance());
     }
 }
