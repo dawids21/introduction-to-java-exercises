@@ -76,6 +76,21 @@ public class ClosestPair {
             }
         }
 
+        for (var point : stripL) {
+            int i = 0;
+            while (i < stripR.size() && stripR.get(i)
+                                              .getY() < point.getY() - minDistance) {
+                i++;
+            }
+            while (i < stripR.size() && stripR.get(i)
+                                              .getY() <= point.getY() + minDistance) {
+                var pairBetweenSides = new Pair(point, stripR.get(i));
+                minPair = minPair.compareTo(pairBetweenSides) <= 0 ? minPair :
+                         pairBetweenSides;
+                i++;
+            }
+        }
+
         return minPair;
     }
 }
