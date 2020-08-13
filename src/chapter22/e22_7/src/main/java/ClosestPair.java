@@ -61,6 +61,9 @@ public class ClosestPair {
         var closestPairInRight = recursivelyFindDistance(rightSide);
         var midPoint = leftSide.get(leftSide.size() - 1);
 
-        return null;
+        var minPair = closestPairInLeft.compareTo(closestPairInRight) <= 0 ?
+                 closestPairInLeft : closestPairInRight;
+        var minDistance = minPair.getDistance();
+        return minPair;
     }
 }
