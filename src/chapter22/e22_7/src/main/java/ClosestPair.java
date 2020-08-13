@@ -57,6 +57,8 @@ public class ClosestPair {
                 rightSide.add(points.get(i));
             }
         }
+        var closestPairInLeft = recursivelyFindDistance(leftSide);
+        var closestPairInRight = recursivelyFindDistance(rightSide);
 
         return null;
     }
