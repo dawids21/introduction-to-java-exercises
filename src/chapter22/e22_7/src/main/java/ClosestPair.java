@@ -64,6 +64,18 @@ public class ClosestPair {
         var minPair = closestPairInLeft.compareTo(closestPairInRight) <= 0 ?
                  closestPairInLeft : closestPairInRight;
         var minDistance = minPair.getDistance();
+        var stripL = new ArrayList<Point2D>();
+        var stripR = new ArrayList<Point2D>();
+        for (var point : orderedByY) {
+            if (leftSide.contains(point) &&
+                point.getX() > midPoint.getX() - minDistance) {
+                stripL.add(point);
+            } else if (rightSide.contains(point) &&
+                       point.getX() <= midPoint.getX() + minDistance) {
+                stripR.add(point);
+            }
+        }
+
         return minPair;
     }
 }
