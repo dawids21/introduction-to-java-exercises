@@ -2,8 +2,8 @@ import java.util.Objects;
 
 public class Point2D {
 
-    private int x = 0;
-    private int y = 0;
+    private double x = 0;
+    private double y = 0;
 
     public Point2D() {
 
@@ -14,11 +14,11 @@ public class Point2D {
         this.y = y;
     }
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -31,8 +31,7 @@ public class Point2D {
             return false;
         }
         Point2D point = (Point2D) o;
-        return getX() == point.getX() &&
-                getY() == point.getY();
+        return getX() == point.getX() && getY() == point.getY();
     }
 
     @Override
@@ -42,9 +41,6 @@ public class Point2D {
 
     @Override
     public String toString() {
-        return "Point2D{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
+        return "Point2D{" + "x=" + x + ", y=" + y + '}';
     }
 }
