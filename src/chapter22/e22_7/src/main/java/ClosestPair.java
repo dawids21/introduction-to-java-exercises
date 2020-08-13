@@ -48,6 +48,16 @@ public class ClosestPair {
             return compare;
         });
 
+        var leftSide = new ArrayList<Point2D>();
+        var rightSide = new ArrayList<Point2D>();
+        for (int i = 0; i < points.size(); i++) {
+            if (i < (points.size() + 1) / 2) {
+                leftSide.add(points.get(i));
+            } else {
+                rightSide.add(points.get(i));
+            }
+        }
+
         return null;
     }
 }
