@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Pair implements Comparable<Pair> {
 
     private final Point2D p1;
@@ -24,5 +26,23 @@ public class Pair implements Comparable<Pair> {
     @Override
     public int compareTo(Pair pair) {
         return Double.compare(getDistance(), pair.getDistance());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Pair pair = (Pair) o;
+        return Objects.equals(getP1(), pair.getP1()) &&
+               Objects.equals(getP2(), pair.getP2());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getP1(), getP2());
     }
 }
