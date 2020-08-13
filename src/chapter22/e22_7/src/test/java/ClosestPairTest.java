@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -8,7 +8,7 @@ class ClosestPairTest {
 
     @Test
     void return_pair_of_points_that_are_closest_to_each_other() {
-        var points = new ArrayList<Point2D>();
+        var points = new HashSet<Point2D>();
         points.add(new Point2D(0, 9));
         points.add(new Point2D(5, 8));
         points.add(new Point2D(2, 7));
