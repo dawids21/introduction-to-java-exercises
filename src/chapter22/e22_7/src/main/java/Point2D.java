@@ -9,7 +9,7 @@ public class Point2D {
 
     }
 
-    public Point2D(int x, int y) {
+    public Point2D(double x, double y) {
         this.x = x;
         this.y = y;
     }
