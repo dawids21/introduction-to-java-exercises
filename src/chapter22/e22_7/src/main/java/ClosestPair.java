@@ -33,6 +33,21 @@ public class ClosestPair {
             return new Pair(points.get(0), points.get(1));
         }
 
+        var orderedByY = new ArrayList<Point2D>(points);
+        orderedByY.sort((p1, p2) -> {
+            int compare;
+            if (p1.getY() != p2.getY()) {
+                compare = p1.getY() > p2.getY() ? 1 : -1;
+            } else {
+                if (p1.getX() == p2.getX()) {
+                    compare = 0;
+                } else {
+                    compare = p1.getX() > p2.getX() ? 1 : -1;
+                }
+            }
+            return compare;
+        });
+
         return null;
     }
 }
