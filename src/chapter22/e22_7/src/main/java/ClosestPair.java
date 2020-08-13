@@ -23,6 +23,16 @@ public class ClosestPair {
     }
 
     private static Pair recursivelyFindDistance(List<Point2D> points) {
+
+        if (points.size() == 3) {
+            Pair[] pairs = {new Pair(points.get(0), points.get(1)),
+                            new Pair(points.get(1), points.get(2)),
+                            new Pair(points.get(2), points.get(0))};
+            return Collections.min(Arrays.asList(pairs));
+        } else if (points.size() == 2) {
+            return new Pair(points.get(0), points.get(1));
+        }
+
         return null;
     }
 }
