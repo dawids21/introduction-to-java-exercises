@@ -1,11 +1,11 @@
-import java.util.Collection;
-import java.util.TreeSet;
+import java.util.*;
 
 public class ClosestPair {
 
     public static Pair find(Collection<? extends Point2D> points) {
 
-        var orderedPoints = new TreeSet<Point2D>((p1, p2) -> {
+        var orderedPoints = new ArrayList<Point2D>(points);
+        orderedPoints.sort((p1, p2) -> {
             int compare;
             if (p1.getX() != p2.getX()) {
                 compare = p1.getX() > p2.getX() ? 1 : -1;
@@ -19,12 +19,10 @@ public class ClosestPair {
             return compare;
         });
 
-        orderedPoints.addAll(points);
-
         return recursivelyFindDistance(orderedPoints);
     }
 
-    private static Pair recursivelyFindDistance(TreeSet<Point2D> points) {
+    private static Pair recursivelyFindDistance(List<Point2D> points) {
         return null;
     }
 }
