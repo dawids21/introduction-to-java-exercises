@@ -33,7 +33,7 @@ public class ClosestPair {
             return new Pair(points.get(0), points.get(1));
         }
 
-        var orderedByY = new ArrayList<Point2D>(points);
+        var orderedByY = new ArrayList<>(points);
         orderedByY.sort((p1, p2) -> {
             int compare;
             if (p1.getY() != p2.getY()) {
