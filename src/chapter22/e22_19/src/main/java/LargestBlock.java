@@ -1,17 +1,18 @@
 public class LargestBlock {
 
+    private final int[][] sourceArray;
+    private final LargestBlockInfo solution;
+
     public LargestBlock(int[][] sourceArray) {
-        //TODO implement LargestBlock
-        throw new UnsupportedOperationException("Not implemented yet");
+        this.sourceArray = sourceArray;
+        solution = solve();
     }
 
     public LargestBlockInfo getSolution() {
-        //TODO implement getSolution
-        throw new UnsupportedOperationException("Not implemented yet");
+        return solution;
     }
 
     public boolean hasSolution() {
-        //TODO implement hasSolution
-        throw new UnsupportedOperationException("Not implemented yet");
+        return solution != null;
     }
 }
