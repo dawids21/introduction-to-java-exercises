@@ -26,9 +26,9 @@ public class LargestBlock {
         for (int i = 1; i < sourceArray.length; i++) {
             for (int j = 1; j < sourceArray[0].length; j++) {
                 if (sourceArray[i][j] == 1) {
-                    var minValue = Math.min(sourceArray[i - 1][j],
-                                            Math.min(sourceArray[i - 1][j - 1],
-                                                     sourceArray[i][j - 1]));
+                    var minValue = Math.min(auxArray[i - 1][j],
+                                            Math.min(auxArray[i - 1][j - 1],
+                                                     auxArray[i][j - 1]));
                     auxArray[i][j] = minValue + 1;
                 } else {
                     auxArray[i][j] = 0;
