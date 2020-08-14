@@ -40,7 +40,25 @@ public class LargestBlock {
     }
 
     private LargestBlockInfo getLargestBlockInfo(int[][] auxArray) {
-        //TODO implement getLargestBlockInfo
-        throw new UnsupportedOperationException("Not implemented yet");
+        var max = 0;
+        var maxX = -1;
+        var maxY = -1;
+        for (int i = 0; i < auxArray.length; i++) {
+            for (int j = 0; j < auxArray[0].length; j++) {
+                if (auxArray[i][j] > max) {
+                    max = auxArray[i][j];
+                    maxX = j;
+                    maxY = i;
+                }
+            }
+        }
+        maxX -= max - 1;
+        maxY -= max - 1;
+
+        if (max == 0) {
+            return null;
+        } else {
+            return new LargestBlockInfo(maxX, maxY, max);
+        }
     }
 }
