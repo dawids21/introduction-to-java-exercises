@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -26,9 +27,8 @@ class GrahamAlgorithmTest {
         expected.add(new Point2D(1, 1));
         expected.add(new Point2D(4, 2));
         expected.add(new Point2D(7, 6));
-        expected.add(new Point2D(4, 6.5));
         expected.add(new Point2D(1, 7));
 
-        assertEquals(expected, convexHull);
+        assertEquals(new HashSet<>(expected), new HashSet<>(convexHull));
     }
 }
