@@ -19,7 +19,7 @@ class GrahamAlgorithmTest {
         points.add(new Point2D(3, 4));
         points.add(new Point2D(1, 7));
 
-        var grahamAlgorithm = new GrahamAlgortihm(points);
+        var grahamAlgorithm = new GrahamAlgorithm(points);
         var convexHull = grahamAlgorithm.getSolution();
 
         List<Point2D> expected = new ArrayList<>();

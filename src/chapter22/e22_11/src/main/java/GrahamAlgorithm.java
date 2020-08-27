@@ -1,9 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class GrahamAlgortihm {
+public class GrahamAlgorithm {
 
-    public GrahamAlgortihm(ArrayList<Point2D> points) {
+    public GrahamAlgorithm(ArrayList<Point2D> points) {
 
     }
 
