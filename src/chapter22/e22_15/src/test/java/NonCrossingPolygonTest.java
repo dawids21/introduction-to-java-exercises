@@ -20,12 +20,12 @@ class NonCrossingPolygonTest {
         var nonCrossingPolygon = new NonCrossingPolygon(points);
 
         var expected = new ArrayList<Point2D>();
-        points.add(new Point2D(5, 1));
-        points.add(new Point2D(5, 4));
-        points.add(new Point2D(2, 6));
-        points.add(new Point2D(1, 4));
-        points.add(new Point2D(2, 2));
-        points.add(new Point2D(1, 1));
+        expected.add(new Point2D(5, 1));
+        expected.add(new Point2D(5, 4));
+        expected.add(new Point2D(2, 6));
+        expected.add(new Point2D(1, 4));
+        expected.add(new Point2D(2, 2));
+        expected.add(new Point2D(1, 1));
 
         Assertions.assertEquals(expected, nonCrossingPolygon.solve());
     }
