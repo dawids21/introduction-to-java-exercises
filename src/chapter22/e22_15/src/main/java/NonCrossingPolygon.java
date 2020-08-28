@@ -1,11 +1,11 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class NonCrossingPolygon {
 
+    private final List<Point2D> points;
+
     public NonCrossingPolygon(List<Point2D> points) {
-        //TODO implement NonCrossingPolygon
-        throw new UnsupportedOperationException("Not implemented yet");
+        this.points = points;
     }
 
     public List<Point2D> solve() {
