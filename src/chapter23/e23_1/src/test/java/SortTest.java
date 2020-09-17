@@ -12,7 +12,7 @@ class SortTest {
 
     private static class ComparableObject implements Comparable<ComparableObject> {
 
-        private int value;
+        private final int value;
 
         public ComparableObject(int value) {
             this.value = value;
@@ -20,10 +20,6 @@ class SortTest {
 
         public int getValue() {
             return value;
-        }
-
-        public void setValue(int value) {
-            this.value = value;
         }
 
         @Override
@@ -56,7 +52,7 @@ class SortTest {
 
     private static class NonComparableObject {
 
-        private int value;
+        private final int value;
 
         public NonComparableObject(int value) {
             this.value = value;
@@ -64,10 +60,6 @@ class SortTest {
 
         public int getValue() {
             return value;
-        }
-
-        public void setValue(int value) {
-            this.value = value;
         }
 
         @Override
