@@ -37,4 +37,14 @@ public class Sort {
         }
 
     }
+
+    public static <E extends Comparable<E>> void mergeSort(E[] list) {
+        //TODO implement mergeSort
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
+
+    public static <E> void mergeSort(E[] list, Comparator<? super E> comparator) {
+        //TODO implement mergeSort
+        throw new UnsupportedOperationException("Not implemented yet");
+    }
 }

@@ -155,4 +155,25 @@ class SortTest {
         }
     }
 
+    @Nested
+    class MergeSort {
+
+        @Test
+        @DisplayName("returns sorted array of comparable objects")
+        void returns_sorted_array_of_comparable_objects() {
+
+            Sort.mergeSort(list);
+
+            assertArrayEquals(expectedList, list);
+        }
+
+        @Test
+        @DisplayName("returns sorted array using given comparator")
+        void returns_sorted_array_using_given_comparator() {
+            Sort.mergeSort(listNon, new ObjectComparator());
+
+            assertArrayEquals(expectedListNon, listNon);
+        }
+    }
+
 }
